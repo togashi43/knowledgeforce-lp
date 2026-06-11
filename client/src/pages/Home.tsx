@@ -34,8 +34,8 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
 // 透過処理された新しいアイコンとロゴのURL
-const LOGO_URL = "/manus-storage/logo-02-trans-refined_b83f0b80.png";
-const ICON_URL = "/manus-storage/knowledgeforce-icon-trans-final-v3_d52c6c7e.png";
+const LOGO_URL = "/manus-storage/knowledgeforce-header-logo_80d84b68.png";
+const ICON_URL = "/manus-storage/knowledgeforce-icon-trimmed_5be8f64b.png";
 
 export default function Home() {
   // 料金トグル (年払い/月払い)
