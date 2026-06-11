@@ -35,7 +35,7 @@ import { toast } from "sonner";
 
 // 透過処理された新しいアイコンとロゴのURL
 const LOGO_URL = "/manus-storage/logo-02-trans-refined_96fc8d0c.png";
-const ICON_URL = "/manus-storage/knowledgeforce-icon-transparent_dc1904e9.png";
+const ICON_URL = "/manus-storage/knowledgeforce-icon-trans-final-v3_91060a95.png";
 
 export default function Home() {
   // 料金トグル (年払い/月払い)
