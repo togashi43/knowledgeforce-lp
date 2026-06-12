@@ -23,8 +23,16 @@ import {
   Mail, 
   HelpCircle,
   FileText,
-  Workflow
+  Workflow,
+  Menu
 } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { toast } from "sonner";
 
 // 透過ロゴURLの定義
@@ -99,7 +107,7 @@ export default function Home() {
             <a href="#pricing" className="hover:text-primary transition-colors">料金プラン</a>
             <a href="#faq" className="hover:text-primary transition-colors">よくある質問</a>
           </nav>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <Button 
               variant="outline" 
               size="sm" 
@@ -110,11 +118,49 @@ export default function Home() {
             </Button>
             <Button 
               size="sm" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] text-xs md:text-sm px-3 md:px-4"
               onClick={() => handleCtaClick("ヘッダー無料相談")}
             >
               無料相談に申し込む
             </Button>
+
+            {/* モバイル用ハンバーガーメニュー */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="icon" className="md:hidden h-9 w-9 p-0">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">メニューを開く</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[280px] sm:w-[350px]">
+                <SheetHeader className="text-left border-b border-slate-100 pb-4">
+                  <SheetTitle className="flex items-center gap-2">
+                    <img 
+                      src={LOGO_HORIZONTAL} 
+                      alt="KNOWLEDGE FORCE" 
+                      className="h-8 w-auto object-contain"
+                    />
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-6 text-sm font-medium">
+                  <a href="#problem" className="py-2 hover:text-primary transition-colors border-b border-slate-50">課題の本質</a>
+                  <a href="#concept" className="py-2 hover:text-primary transition-colors border-b border-slate-50">コンセプト</a>
+                  <a href="#features" className="py-2 hover:text-primary transition-colors border-b border-slate-50">主要機能</a>
+                  <a href="#simulation" className="py-2 hover:text-primary transition-colors border-b border-slate-50">費用シミュレーション</a>
+                  <a href="#pricing" className="py-2 hover:text-primary transition-colors border-b border-slate-50">料金プラン</a>
+                  <a href="#faq" className="py-2 hover:text-primary transition-colors border-b border-slate-50">よくある質問</a>
+                  <div className="flex flex-col gap-2 pt-4">
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-center"
+                      onClick={() => handleCtaClick("モバイルログイン")}
+                    >
+                      ログイン
+                    </Button>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </header>
@@ -162,18 +208,18 @@ export default function Home() {
             </div>
             
             {/* 実績・信頼性の表示 */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100 w-full">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 border-t border-slate-100 w-full">
               <div>
-                <p className="text-2xl md:text-3xl font-bold text-primary">¥50億+</p>
-                <p className="text-xs text-muted-foreground">累計クライアント売上</p>
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">¥50億+</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">累計売上</p>
               </div>
               <div>
-                <p className="text-2xl md:text-3xl font-bold text-primary">160社+</p>
-                <p className="text-xs text-muted-foreground">取引社数</p>
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">160社+</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">取引社数</p>
               </div>
               <div>
-                <p className="text-2xl md:text-3xl font-bold text-primary">90+</p>
-                <p className="text-xs text-muted-foreground">対応ジャンル</p>
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">90+</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">対応ジャンル</p>
               </div>
             </div>
           </div>
@@ -191,23 +237,23 @@ export default function Home() {
               </div>
               
               {/* 浮遊するミニロゴバッジ */}
-              <div className="absolute -top-4 -left-4 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-3 animate-bounce" style={{ animationDuration: '4s' }}>
-                <div className="bg-primary/10 p-2 rounded-xl">
-                  <Bot className="h-6 w-6 text-primary" />
+              <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 bg-white/95 backdrop-blur-md p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border border-slate-100 flex items-center gap-2 sm:gap-3 animate-bounce" style={{ animationDuration: '4s' }}>
+                <div className="bg-primary/10 p-1.5 sm:p-2 rounded-lg sm:rounded-xl">
+                  <Bot className="h-4 w-4 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-800">自社専用AI</p>
-                  <p className="text-[10px] text-muted-foreground">使うほど賢くなる</p>
+                  <p className="text-[10px] sm:text-xs font-bold text-slate-800">自社専用AI</p>
+                  <p className="text-[8px] sm:text-[10px] text-muted-foreground">使うほど賢くなる</p>
                 </div>
               </div>
               
-              <div className="absolute -bottom-4 -right-4 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-3 animate-bounce" style={{ animationDuration: '5s', animationDelay: '1s' }}>
-                <div className="bg-cyan-500/10 p-2 rounded-xl">
-                  <TrendingUp className="h-6 w-6 text-cyan-600" />
+              <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 bg-white/95 backdrop-blur-md p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border border-slate-100 flex items-center gap-2 sm:gap-3 animate-bounce" style={{ animationDuration: '5s', animationDelay: '1s' }}>
+                <div className="bg-cyan-500/10 p-1.5 sm:p-2 rounded-lg sm:rounded-xl">
+                  <TrendingUp className="h-4 w-4 sm:h-6 sm:w-6 text-cyan-600" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-800">年間¥370万削減</p>
-                  <p className="text-[10px] text-muted-foreground">不要なツールを一掃</p>
+                  <p className="text-[10px] sm:text-xs font-bold text-slate-800">年間¥370万削減</p>
+                  <p className="text-[8px] sm:text-[10px] text-muted-foreground">不要ツールを一掃</p>
                 </div>
               </div>
             </div>
@@ -507,14 +553,14 @@ export default function Home() {
             <Card className="bg-white border-none shadow-sm hover:shadow-lg transition-all duration-300">
               <CardContent className="pt-8 pb-8 flex flex-col gap-4">
                 <div className="p-3 bg-blue-50 text-primary rounded-2xl w-fit">
-                  <Bot className="h-6 w-6" />
+                  <Database className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800">⑤ 実データ連動AI事業相談</h3>
+                <h3 className="text-xl font-bold text-slate-800">⑤ データ一元管理＆AI事業分析</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  一般論しか言わないChatGPTとは別次元。あなたの受講生の行動ログや決済・解約データをもとに、売上を伸ばすための「根拠ある仮説」を提示。
+                  学習履歴、LINE配信、決済状況、CSチャットログなど、分断されていたすべてのデータを1つのダッシュボードに自動で一元管理。蓄積された実データに基づき、AIがLTV最大化のための最適な仮説を提示します。
                 </p>
                 <div className="text-xs font-semibold text-primary bg-blue-50 px-3 py-1.5 rounded-lg w-fit">
-                  「構築モード」と「相談モード」を搭載
+                  散らばったデータを一箇所に完全集約
                 </div>
               </CardContent>
             </Card>
@@ -620,27 +666,27 @@ export default function Home() {
                 シミュレーション結果（年間目安）
               </h3>
 
-              <div className="grid grid-cols-2 gap-6 py-6 border-y border-slate-800">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 py-6 border-y border-slate-800">
                 <div>
                   <p className="text-xs text-slate-400">現状の年間総コスト</p>
-                  <p className="text-2xl md:text-3xl font-extrabold text-red-400">
+                  <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-red-400">
                     ¥{(currentCost / 10000).toLocaleString()}万円
                   </p>
                 </div>
-                <div>
+                <div className="mt-4 sm:mt-0">
                   <p className="text-xs text-slate-400">導入後の年間総コスト</p>
-                  <p className="text-2xl md:text-3xl font-extrabold text-emerald-400">
+                  <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-emerald-400">
                     ¥{(kfCost / 10000).toLocaleString()}万円
                   </p>
                 </div>
               </div>
 
-              <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-800 flex flex-col gap-2">
-                <p className="text-xs text-cyan-400 font-bold uppercase tracking-wider">KNOWLEDGE FORCE によるコスト削減効果</p>
-                <p className="text-4xl md:text-5xl font-black text-white">
+              <div className="bg-slate-800/80 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-slate-800 flex flex-col gap-2">
+                <p className="text-[10px] sm:text-xs text-cyan-400 font-bold uppercase tracking-wider">KNOWLEDGE FORCE によるコスト削減効果</p>
+                <p className="text-2xl sm:text-3xl md:text-5xl font-black text-white">
                   年間 ¥{(savedCost / 10000).toLocaleString()} 万円 浮く！
                 </p>
-                <p className="text-xs text-slate-400 mt-2">
+                <p className="text-[10px] sm:text-xs text-slate-400 mt-2">
                   ※バラバラに契約していたツール群の解約、AIによる問い合わせ自動化（人件費削減）、AIライターによる外注費削減を含みます。
                 </p>
               </div>
@@ -648,7 +694,7 @@ export default function Home() {
               {/* 売上向上インパクト */}
               <div className="flex flex-col gap-3">
                 <p className="text-xs text-slate-400">さらに売上自体を構造的に押し上げるインパクト</p>
-                <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
                   <div className="bg-slate-800/40 p-3 rounded-xl">
                     <p className="text-xs text-slate-400">継続率・LTV</p>
                     <p className="text-sm font-bold text-cyan-400">+15〜25%</p>
@@ -1004,7 +1050,7 @@ export default function Home() {
               <li>LP制作アシスタント</li>
               <li>LINE・メール配信自動化</li>
               <li>Stripe決済連携</li>
-              <li>AI事業相談</li>
+              <li>データ一元管理＆AI事業分析</li>
               <li>カスタムCSチャットボット</li>
             </ul>
           </div>
