@@ -138,6 +138,17 @@
   }
 }
 
+@layer utilities {
+  /* スクロールバー非表示ユーティリティ */
+  .scrollbar-none {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+}
+
 @layer components {
   .container {
     width: 100%;

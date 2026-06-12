@@ -27,12 +27,20 @@ import {
   Minus,
   CheckCircle2,
   AlertCircle,
-  Database
+  Database,
+  Menu
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
+import { 
+  Sheet, 
+  SheetContent, 
+  SheetTrigger,
+  SheetTitle,
+  SheetClose
+} from "@/components/ui/sheet";
 
 // 透過処理された新しいアイコンとロゴのURL
 const LOGO_URL = "/manus-storage/knowledgeforce-header-logo_80d84b68.png";
@@ -68,7 +76,7 @@ export default function Home() {
 
   const handleCtaClick = () => {
     toast.success("30日間無料お試しにお申し込みいただきありがとうございます！アカウント作成画面へ移行します。", {
-      description: "クレジットカード登録不要で、すべての機能と300クレジットが今すぐご利用いただけます。",
+      description: "すべての機能と300クレジットが今すぐご利用いただけます。",
       duration: 5000,
     });
   };
@@ -100,13 +108,57 @@ export default function Home() {
             <a href="#faq" className="hover:text-blue-600 transition-colors">よくある質問</a>
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <Button 
               onClick={handleCtaClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md shadow-blue-200 hover:shadow-lg hover:shadow-blue-300 active:scale-95 transition-all duration-200 text-sm rounded-full px-6 py-2"
+              className="hidden sm:inline-flex bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md shadow-blue-200 hover:shadow-lg hover:shadow-blue-300 active:scale-95 transition-all duration-200 text-xs sm:text-sm rounded-full px-4 sm:px-6 py-2"
             >
               30日間無料で試す
             </Button>
+
+            {/* モバイル用ハンバーガーメニュー */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden text-slate-600 hover:text-blue-600">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white text-slate-800">
+                <div className="flex flex-col gap-6 pt-10">
+                  <SheetTitle className="text-left text-lg font-bold text-slate-900 border-b pb-4">
+                    メニュー
+                  </SheetTitle>
+                  <nav className="flex flex-col gap-4 text-base font-medium">
+                    <SheetClose asChild>
+                      <a href="#flywheel" className="hover:text-blue-600 transition-colors py-2 border-b border-slate-50">進化ロジック</a>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <a href="#features" className="hover:text-blue-600 transition-colors py-2 border-b border-slate-50">6つの機能</a>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <a href="#saas-cases" className="hover:text-blue-600 transition-colors py-2 border-b border-slate-50">活用事例</a>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <a href="#credits" className="hover:text-blue-600 transition-colors py-2 border-b border-slate-50">AIクレジット</a>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <a href="#pricing" className="hover:text-blue-600 transition-colors py-2 border-b border-slate-50">料金プラン</a>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <a href="#faq" className="hover:text-blue-600 transition-colors py-2 border-b border-slate-50">よくある質問</a>
+                    </SheetClose>
+                  </nav>
+                  <SheetClose asChild>
+                    <Button 
+                      onClick={handleCtaClick}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-full py-3 mt-4"
+                    >
+                      30日間無料で試す
+                    </Button>
+                  </SheetClose>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </header>
@@ -172,20 +224,20 @@ export default function Home() {
                 </Button>
               </div>
 
-{/* クレジットカード登録不要・30秒で即座に開始可能バッジはカットされました */}
+{/* 登録バッジカット */}
 
               {/* クイック実績スタッツ */}
-              <div className="mt-12 pt-8 border-t border-slate-100 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
-                <div>
-                  <div className="text-3xl font-extrabold text-blue-600">9つ</div>
+              <div className="mt-12 pt-8 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 max-w-lg mx-auto lg:mx-0 text-center sm:text-left">
+                <div className="border-b sm:border-b-0 pb-4 sm:pb-0 border-slate-100">
+                  <div className="text-3xl md:text-4xl font-black text-blue-600">9つ</div>
                   <div className="text-xs text-slate-500 mt-1">のツールを1つに統合</div>
                 </div>
-                <div>
-                  <div className="text-3xl font-extrabold text-blue-600">1/2</div>
+                <div className="border-b sm:border-b-0 pb-4 sm:pb-0 border-slate-100">
+                  <div className="text-3xl md:text-4xl font-black text-blue-600">1/2</div>
                   <div className="text-xs text-slate-500 mt-1">の労力で会員サイト構築</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-blue-600">80%</div>
+                  <div className="text-3xl md:text-4xl font-black text-blue-600">80%</div>
                   <div className="text-xs text-slate-500 mt-1">の運営工数を自動削減</div>
                 </div>
               </div>
@@ -217,39 +269,39 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               {/* 左側：循環の視覚的表現 */}
-              <div className="lg:col-span-6 flex justify-center">
-                <div className="relative w-72 h-72 md:w-96 md:h-96 flex items-center justify-center">
+              <div className="lg:col-span-6 flex justify-center py-6 sm:py-0 overflow-hidden w-full">
+                <div className="relative w-[290px] h-[290px] sm:w-96 sm:h-96 flex items-center justify-center scale-[0.9] sm:scale-100 transition-transform duration-300">
                   {/* 中央のコア */}
-                  <div className="absolute w-24 h-24 md:w-32 md:h-32 bg-white rounded-full shadow-lg border border-blue-100 flex flex-col items-center justify-center z-10">
-                    <img src={ICON_URL} alt="KF" className="w-10 h-10 md:w-14 md:h-10 object-contain" />
-                    <span className="text-[10px] md:text-xs font-bold text-blue-600 mt-1">学習AI頭脳</span>
+                  <div className="absolute w-20 h-20 sm:w-32 sm:h-32 bg-white rounded-full shadow-lg border border-blue-100 flex flex-col items-center justify-center z-10">
+                    <img src={ICON_URL} alt="KF" className="w-8 h-8 sm:w-14 sm:h-10 object-contain" />
+                    <span className="text-[9px] sm:text-xs font-bold text-blue-600 mt-1">学習AI頭脳</span>
                   </div>
 
                   {/* 循環する軌道とステップ */}
                   <div className="absolute inset-0 border-4 border-dashed border-blue-200 rounded-full animate-spin" style={{ animationDuration: '60s' }} />
 
                   {/* ステップ1: 知見のインプット (上) */}
-                  <div className="absolute -top-4 bg-white px-4 py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 z-10 hover:scale-105 transition-transform">
-                    <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                    <span className="text-xs font-bold text-slate-700">教材・知見の学習</span>
+                  <div className="absolute -top-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                    <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">1</span>
+                    <span className="text-[10px] sm:text-xs font-bold text-slate-700">教材・知見の学習</span>
                   </div>
 
                   {/* ステップ2: エンドユーザー利用 (右) */}
-                  <div className="absolute -right-4 bg-white px-4 py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 z-10 hover:scale-105 transition-transform">
-                    <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
-                    <span className="text-xs font-bold text-slate-700">受講生が質問・学習</span>
+                  <div className="absolute -right-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                    <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">2</span>
+                    <span className="text-[10px] sm:text-xs font-bold text-slate-700">受講生が質問・学習</span>
                   </div>
 
                   {/* ステップ3: ログの蓄積 (下) */}
-                  <div className="absolute -bottom-4 bg-white px-4 py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 z-10 hover:scale-105 transition-transform">
-                    <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">3</span>
-                    <span className="text-xs font-bold text-slate-700">行動・対話ログの蓄積</span>
+                  <div className="absolute -bottom-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                    <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">3</span>
+                    <span className="text-[10px] sm:text-xs font-bold text-slate-700">行動・対話ログの蓄積</span>
                   </div>
 
                   {/* ステップ4: AIの進化と改善提案 (左) */}
-                  <div className="absolute -left-4 bg-white px-4 py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 z-10 hover:scale-105 transition-transform">
-                    <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">4</span>
-                    <span className="text-xs font-bold text-slate-700">自動改善＆売上向上</span>
+                  <div className="absolute -left-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                    <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">4</span>
+                    <span className="text-[10px] sm:text-xs font-bold text-slate-700">自動改善＆売上向上</span>
                   </div>
                 </div>
               </div>
@@ -523,7 +575,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             
             {/* タブヘッダー */}
-            <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12">
+            <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-3 mb-12 overflow-x-auto pb-3 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 select-none">
               {[
                 { label: "AI学習会員サイト", icon: Layers },
                 { label: "ノーコードLP制作", icon: FileText },
@@ -537,7 +589,7 @@ export default function Home() {
                   <button
                     key={idx}
                     onClick={() => setActiveFeatureTab(idx)}
-                    className={`flex items-center gap-2 px-4 py-3 rounded-full text-sm font-bold transition-all duration-200 ${
+                    className={`flex items-center gap-2 px-4 py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
                       activeFeatureTab === idx
                         ? "bg-blue-600 text-white shadow-md shadow-blue-100"
                         : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-100"
@@ -1000,14 +1052,14 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100">
-                  <div className="text-left p-4 bg-slate-50 rounded-2xl">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-4 border-t border-slate-100">
+                  <div className="text-center sm:text-left p-4 bg-slate-50 rounded-2xl">
                     <div className="text-[10px] text-slate-400 font-bold">月間の削減コスト</div>
-                    <div className="text-lg font-bold text-slate-700 mt-1">
+                    <div className="text-base sm:text-lg font-bold text-slate-700 mt-1">
                       {calculatedSavings.monthly.toLocaleString()} 円
                     </div>
                   </div>
-                  <div className="text-left p-4 bg-slate-50 rounded-2xl">
+                  <div className="text-center sm:text-left p-4 bg-slate-50 rounded-2xl flex flex-col justify-center">
                     <div className="text-[10px] text-slate-400 font-bold">浮いた時間でできること</div>
                     <div className="text-xs font-bold text-blue-600 mt-1">
                       新規集客・コンテンツ企画
