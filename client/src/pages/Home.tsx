@@ -26,7 +26,8 @@ import {
   Cpu,
   Minus,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Database
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -171,10 +172,7 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="mt-4 text-xs text-slate-400 flex items-center justify-center lg:justify-start gap-4">
-                <span className="flex items-center gap-1"><ShieldCheck className="w-4 h-4 text-blue-500" /> クレジットカード登録不要</span>
-                <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-blue-500" /> 30秒で即座に開始可能</span>
-              </div>
+{/* クレジットカード登録不要・30秒で即座に開始可能バッジはカットされました */}
 
               {/* クイック実績スタッツ */}
               <div className="mt-12 pt-8 border-t border-slate-100 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
@@ -532,7 +530,7 @@ export default function Home() {
                 { label: "LINE自動連携", icon: Smartphone },
                 { label: "Stripe決済連携", icon: CreditCard },
                 { label: "カスタムCSボット", icon: MessageSquare },
-                { label: "AI事業相談", icon: Lightbulb },
+                { label: "データ一元管理", icon: Database },
               ].map((tab, idx) => {
                 const Icon = tab.icon;
                 return (
@@ -792,42 +790,56 @@ export default function Home() {
                   <div className="lg:col-span-7 space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
-                        <Lightbulb className="w-6 h-6" />
+                        <Database className="w-6 h-6" />
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900">AI事業相談</h3>
+                      <h3 className="text-2xl font-bold text-slate-900">データ一元管理ダッシュボード</h3>
                     </div>
                     
                     <p className="text-slate-600 leading-relaxed">
-                      24時間いつでも相談できる、あなた専属の「AI経営コンサルタント」。
-                      事業計画の策定から、新講座の企画、マーケティング施策、配信メッセージのブラッシュアップまで、あらゆる相談に即座に応じます。
+                      会員サイトの学習進捗、LINEの配信・反応ログ、Stripe決済データ、CSチャットの質問履歴まで、あらゆる顧客データを1つのダッシュボードに自動で一元管理。バラバラだったツールを1つに統合し、データのサイロ化を完全に解消します。
                     </p>
 
                     <div className="space-y-3">
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>他社との違い：</strong> 汎用的なAIチャットとは異なり、KnowledgeForceに蓄積された「あなたの売上データや受講生ログ」を前提にした、極めて具体的で現実的なアドバイスを行います。</span>
+                        <span className="text-sm text-slate-700"><strong>他社との違い：</strong> ツールごとにデータを手動でCSVエクスポート・インポートして突合する必要がありません。すべてのデータがリアルタイムで自動連携・一元化されます。</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>どんな人におすすめ：</strong> 1人で事業を運営しており、壁打ち相手やマーケティングのアドバイザーが欲しい方。</span>
+                        <span className="text-sm text-slate-700"><strong>どんな人におすすめ：</strong> 複数の配信ツールや決済ツールを並行利用しており、受講生一人ひとりの「本当の学習状況や売上貢献度」が追いきれなくなっている運営者。</span>
                       </div>
                     </div>
 
                     <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100 text-xs text-blue-800">
-                      <strong>【図解】AI事業相談：</strong>
-                      「来月の売上を1.5倍にするための施策は？」 ➔ AIが「現在の会員データ・離脱率・過去の売れ筋LP」を分析し、最も成約率の高いプロモーション案を自動作成
+                      <strong>【図解】データ一元管理：</strong>
+                      受講生の学習ログ（会員サイト） ➔ 決済履歴（Stripe） ➔ 配信反応（LINE） ➔ 質問履歴（CSボット）が1つの個人プロファイルに自動集約
                     </div>
                   </div>
                   <div className="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
-                    <h4 className="font-bold text-slate-800 text-sm">AI事業相談チャット（イメージ）</h4>
+                    <h4 className="font-bold text-slate-800 text-sm">一元管理ダッシュボード（イメージ）</h4>
                     <div className="bg-white p-4 rounded-xl border border-slate-100 space-y-3 shadow-sm text-xs">
-                      <div className="text-left">
-                        <span className="bg-blue-50 text-blue-800 p-2 rounded-lg inline-block font-bold">
-                          「現在の受講生データに基づき、次回のバックエンド講座の最適な価格設定と訴求ポイントを教えてください。」
-                        </span>
+                      <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                        <span className="font-bold text-slate-800">受講生プロファイル：佐藤 美咲 様</span>
+                        <span className="text-[10px] bg-green-50 text-green-600 px-2 py-0.5 rounded-full font-bold">Active</span>
                       </div>
-                      <div className="h-2 w-full bg-slate-100 rounded-full" />
-                      <div className="h-2 w-5/6 bg-slate-100 rounded-full" />
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">学習進捗率:</span>
+                          <span className="font-bold text-slate-800">85% (第4章完了)</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">決済状況 (Stripe):</span>
+                          <span className="font-bold text-slate-800">月額サブスク継続中</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">LINE開封率:</span>
+                          <span className="font-bold text-slate-800">92% (非常に高い)</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">CS質問履歴:</span>
+                          <span className="font-bold text-slate-800">計3回 (AIが即時解決)</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1510,8 +1522,6 @@ export default function Home() {
               <span>初期費用 ¥0</span>
               <span>•</span>
               <span>いつでも解約可能</span>
-              <span>•</span>
-              <span>クレジットカード登録不要</span>
             </div>
           </div>
         </div>
