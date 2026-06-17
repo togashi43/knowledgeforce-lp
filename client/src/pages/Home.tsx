@@ -109,12 +109,14 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <Button 
-              onClick={handleCtaClick}
-              className="hidden sm:inline-flex bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md shadow-blue-200 hover:shadow-lg hover:shadow-blue-300 active:scale-95 transition-all duration-200 text-xs sm:text-sm rounded-full px-4 sm:px-6 py-2"
+            <a 
+              href="https://utage-system.com/line/open/GKFElGNFcC3y"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md shadow-blue-200 hover:shadow-lg hover:shadow-blue-300 active:scale-95 transition-all duration-200 text-xs sm:text-sm rounded-full px-4 sm:px-6 py-2 h-10"
             >
               無料で始める
-            </Button>
+            </a>
 
             {/* モバイル用ハンバーガーメニュー */}
             <Sheet>
@@ -146,12 +148,14 @@ export default function Home() {
                     </SheetClose>
                   </nav>
                   <SheetClose asChild>
-                    <Button 
-                      onClick={handleCtaClick}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-full py-3 mt-4"
+                    <a 
+                      href="https://utage-system.com/line/open/GKFElGNFcC3y"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-full py-3 mt-4 text-center text-sm"
                     >
                       KNOWLEDGE FORCEを30日間無料で始める
-                    </Button>
+                    </a>
                   </SheetClose>
                 </div>
               </SheetContent>
@@ -189,14 +193,15 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button 
-                  onClick={handleCtaClick}
-                  size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base md:text-lg rounded-full px-6 py-5 sm:px-8 sm:py-6 w-full sm:w-auto shadow-lg shadow-blue-200 hover:shadow-xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group whitespace-normal sm:whitespace-nowrap h-auto min-h-[50px]"
+                <a 
+                  href="https://utage-system.com/line/open/GKFElGNFcC3y"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base md:text-lg rounded-full px-6 py-5 sm:px-8 sm:py-6 w-full sm:w-auto shadow-lg shadow-blue-200 hover:shadow-xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group whitespace-normal sm:whitespace-nowrap h-auto min-h-[50px] flex items-center justify-center"
                 >
                   KNOWLEDGE FORCEを30日間無料で始める
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-                </Button>
+                </a>
               </div>
 
               {/* クイック実績スタッツ (スマホでも美しく並ぶ仕様、要望通り修正) */}
@@ -410,56 +415,64 @@ export default function Home() {
             {/* 3大AIの対応表 */}
             <div className="lg:col-span-7">
               <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-100 border border-slate-100 h-full flex flex-col justify-between">
-                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-blue-600" />
-                  利用可能な主要AIモデル一覧
-                </h4>
-                <div className="overflow-x-auto scrollbar-none">
-                  <table className="w-full text-sm text-left border-collapse">
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-blue-600" />
+                    利用可能な主要AIモデル一覧
+                  </h4>
+                  <span className="text-[10px] bg-blue-50 text-blue-600 font-bold px-2 py-0.5 rounded-full sm:hidden animate-pulse">
+                    ← 横スライドで確認できます
+                  </span>
+                </div>
+                
+                {/* overflow-x-auto で横スクロール可能に。かつ table に min-w-[580px] を指定してスマホでの縦潰れを完全防止 */}
+                {/* -mx-6 px-6 をスマホ時に当てることで、画面端までテーブルがはみ出してスライドできる美しいネイティブアプリ風UIにします */}
+                <div className="overflow-x-auto scrollbar-none -mx-6 px-6 sm:mx-0 sm:px-0 pb-2" style={{ WebkitOverflowScrolling: 'touch' }}>
+                  <table className="w-full text-sm text-left border-collapse min-w-[580px]">
                     <thead>
-	                      <tr className="border-b border-slate-100 text-slate-400 font-medium">
-	                        <th className="py-3 px-2">AIモデル</th>
-	                        <th className="py-3 px-2">得意なタスク</th>
-	                        <th className="py-3 px-2 text-center">プラン</th>
-	                        <th className="py-3 px-2 text-right text-blue-600 font-bold">KNOWLEDGE FORCE</th>
-	                      </tr>
+                      <tr className="border-b border-slate-100 text-slate-400 font-medium">
+                        <th className="py-3 px-3 w-[160px]">AIモデル</th>
+                        <th className="py-3 px-3">得意なタスク</th>
+                        <th className="py-3 px-3 text-center w-[130px]">プラン</th>
+                        <th className="py-3 px-3 text-right text-blue-600 font-bold w-[130px]">KNOWLEDGE FORCE</th>
+                      </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-50">
                       <tr>
-                        <td className="py-4 px-2 font-bold text-slate-800 flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
+                        <td className="py-4 px-3 font-bold text-slate-800 flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full flex-shrink-0"></span>
                           ChatGPT (GPT-4o)
                         </td>
-                        <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">論理的思考、プログラミング、構造化、アイデア出し</td>
-                        <td className="py-4 px-2 text-center text-slate-400 whitespace-pre-line">
+                        <td className="py-4 px-3 text-slate-600 text-xs sm:text-sm">論理的思考、プログラミング、構造化、アイデア出し</td>
+                        <td className="py-4 px-3 text-center text-slate-500 text-xs sm:text-sm whitespace-pre-line leading-snug">
                           個別有料プラン<br />
                           (約3,000円)
                         </td>
-                        <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
+                        <td className="py-4 px-3 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                       <tr>
-                        <td className="py-4 px-2 font-bold text-slate-800 flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 bg-orange-500 rounded-full"></span>
+                        <td className="py-4 px-3 font-bold text-slate-800 flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 bg-orange-500 rounded-full flex-shrink-0"></span>
                           Claude 3.5 Sonnet
                         </td>
-                        <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">自然で美しい日本語の執筆、長文の要約、高度な分析</td>
-                        <td className="py-4 px-2 text-center text-slate-400 whitespace-pre-line">
+                        <td className="py-4 px-3 text-slate-600 text-xs sm:text-sm">自然で美しい日本語の執筆、長文の要約、高度な分析</td>
+                        <td className="py-4 px-3 text-center text-slate-500 text-xs sm:text-sm whitespace-pre-line leading-snug">
                           個別有料プラン<br />
                           (約3,000円)
                         </td>
-                        <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
+                        <td className="py-4 px-3 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                       <tr>
-                        <td className="py-4 px-2 font-bold text-slate-800 flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 bg-indigo-500 rounded-full"></span>
+                        <td className="py-4 px-3 font-bold text-slate-800 flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 bg-indigo-500 rounded-full flex-shrink-0"></span>
                           Gemini 1.5 Pro
                         </td>
-                        <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">大量のドキュメント・動画データの超高速一括読み込み</td>
-                        <td className="py-4 px-2 text-center text-slate-400 whitespace-pre-line">
+                        <td className="py-4 px-3 text-slate-600 text-xs sm:text-sm">大量のドキュメント・動画データの超高速一括読み込み</td>
+                        <td className="py-4 px-3 text-center text-slate-500 text-xs sm:text-sm whitespace-pre-line leading-snug">
                           個別有料プラン<br />
                           (約3,000円)
                         </td>
-                        <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
+                        <td className="py-4 px-3 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                     </tbody>
                   </table>
@@ -1361,16 +1374,17 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-8">
-                <Button 
-                  onClick={handleCtaClick}
-                  variant="outline"
-                  className="w-full rounded-full border-blue-200 text-blue-600 hover:bg-blue-50 font-bold py-5 text-xs whitespace-normal h-auto min-h-12 px-4 leading-snug"
-                >
-                  KNOWLEDGE FORCEを30日間無料で始める
-                </Button>
-              </div>
-            </Card>
+	              <div className="mt-8">
+	                <a 
+	                  href="https://utage-system.com/line/open/GKFElGNFcC3y"
+	                  target="_blank"
+	                  rel="noopener noreferrer"
+	                  className="w-full flex items-center justify-center rounded-full border border-blue-200 text-blue-600 hover:bg-blue-50 font-bold py-4 text-xs whitespace-normal h-auto min-h-12 px-4 leading-snug text-center transition-colors"
+	                >
+	                  KNOWLEDGE FORCEを30日間無料で始める
+	                </a>
+	              </div>
+	            </Card>
 
 	            {/* プラン2：スタンダード（人気） */}
 	            <Card className="p-6 bg-white border-2 border-blue-500 rounded-3xl flex flex-col justify-between hover:shadow-2xl hover:shadow-blue-50/50 transition-all duration-300 relative">
@@ -1418,15 +1432,17 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-8">
-                <Button 
-                  onClick={handleCtaClick}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-5 text-xs rounded-full shadow-lg shadow-blue-100 whitespace-normal h-auto min-h-12 px-4 leading-snug"
-                >
-                  KNOWLEDGE FORCEを30日間無料で始める
-                </Button>
-              </div>
-            </Card>
+	              <div className="mt-8">
+	                <a 
+	                  href="https://utage-system.com/line/open/GKFElGNFcC3y"
+	                  target="_blank"
+	                  rel="noopener noreferrer"
+	                  className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 text-xs rounded-full shadow-lg shadow-blue-100 whitespace-normal h-auto min-h-12 px-4 leading-snug text-center transition-colors"
+	                >
+	                  KNOWLEDGE FORCEを30日間無料で始める
+	                </a>
+	              </div>
+	            </Card>
 
 	            {/* プラン3：プレミアム */}
 	            <Card className="p-6 bg-white border border-slate-100 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300">
@@ -1470,18 +1486,19 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-8">
-                <Button 
-                  onClick={handleCtaClick}
-                  variant="outline"
-                  className="w-full rounded-full border-blue-200 text-blue-600 hover:bg-blue-50 font-bold py-5 text-xs whitespace-normal h-auto min-h-12 px-4 leading-snug"
-                >
-                  KNOWLEDGE FORCEを30日間無料で始める
-                </Button>
-              </div>
-            </Card>
+	              <div className="mt-8">
+	                <a 
+	                  href="https://utage-system.com/line/open/GKFElGNFcC3y"
+	                  target="_blank"
+	                  rel="noopener noreferrer"
+	                  className="w-full flex items-center justify-center rounded-full border border-blue-200 text-blue-600 hover:bg-blue-50 font-bold py-4 text-xs whitespace-normal h-auto min-h-12 px-4 leading-snug text-center transition-colors"
+	                >
+	                  KNOWLEDGE FORCEを30日間無料で始める
+	                </a>
+	              </div>
+	            </Card>
 
-            {/* プラン4：エンタープライズ（新規追加） */}
+	            {/* プラン4：エンタープライズ（新規追加） */}
             <Card className="p-6 bg-slate-50/50 border border-dashed border-blue-300 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300">
               <div className="space-y-4">
                 <div className="text-blue-600 text-xs font-bold tracking-wider uppercase">エンタープライズ</div>
@@ -1758,15 +1775,16 @@ export default function Home() {
             30日間の無料お試しで、KNOWLEDGE FORCEによる圧倒的な効率化と売上最大化を今すぐ体験してください。
           </p>
 
-	          <div className="pt-4">
-	            <Button 
-	              onClick={handleCtaClick}
-	              size="lg"
-	              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl rounded-full px-10 py-7 shadow-xl shadow-blue-200 hover:shadow-2xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group"
-	            >
-	              KNOWLEDGE FORCEを30日間無料で始める
-	              <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
-	            </Button>
+		          <div className="pt-4">
+		            <a 
+		              href="https://utage-system.com/line/open/GKFElGNFcC3y"
+		              target="_blank"
+		              rel="noopener noreferrer"
+		              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold text-base sm:text-xl rounded-full px-8 py-5 sm:px-10 sm:py-6 shadow-xl shadow-blue-200 hover:shadow-2xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group h-auto min-h-[56px] text-center"
+		            >
+		              KNOWLEDGE FORCEを30日間無料で始める
+		              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 group-hover:translate-x-1 transition-transform" />
+		            </a>
             
             {/* 初期費用と解約可能のテキストはカット */}
           </div>
