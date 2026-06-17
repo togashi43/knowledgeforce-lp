@@ -79,10 +79,7 @@ export default function Home() {
   const [activeFeatureTab, setActiveFeatureTab] = useState(0);
 
   const handleCtaClick = () => {
-    toast.success("30日間無料お試しにお申し込みいただきありがとうございます！アカウント作成画面へ移行します。", {
-      description: "すべての機能と300クレジットが今すぐご利用いただけます。",
-      duration: 5000,
-    });
+    window.open("https://utage-system.com/line/open/GKFElGNFcC3y", "_blank");
   };
 
   return (
@@ -188,7 +185,7 @@ export default function Home() {
               </div>
               
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                <strong>KNOWLEDGE FORCE</strong>は、教材の創造から、会員サイト・LPの構築、そしてLINE、AIによる個別学習サポートまですべてを1つに統合した、事業者と受講生のための次世代AIインフラです。
+                <strong>KNOWLEDGE FORCE（ナレッジフォース）</strong>は、教材の創造から、会員サイト・LPの構築、そしてLINEや決済、顧客の学習サポートまですべてを1つに統合し、AI駆動を前提とした事業者と受講生のための次世代の教育事業者特化型AIインフラです。
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -205,11 +202,15 @@ export default function Home() {
               {/* クイック実績スタッツ (スマホでも美しく並ぶ仕様、要望通り修正) */}
               <div className="pt-6 sm:pt-8 border-t border-slate-100 grid grid-cols-2 gap-4 max-w-lg mx-auto lg:mx-0">
                 <div className="text-center lg:text-left">
-                  <div className="text-lg sm:text-xl md:text-2xl font-black text-blue-600 leading-tight">スクール事業特化のAI SaaS</div>
+                  <div className="text-lg sm:text-xl md:text-2xl font-black text-blue-600 leading-tight">
+                    スクール事業特化<br />AI SaaS
+                  </div>
                   <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">業界に完全にアジャストされた設計</div>
                 </div>
                 <div className="text-center lg:text-left border-l border-slate-100 pl-4">
-                  <div className="text-lg sm:text-xl md:text-2xl font-black text-blue-600 leading-tight">ツールの一元化によりデータも一元管理</div>
+                  <div className="text-lg sm:text-xl md:text-2xl font-black text-blue-600 leading-tight">
+                    ツールの一元化により<br />データも一元管理
+                  </div>
                   <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">散らばったデータを1つに集約</div>
                 </div>
               </div>
@@ -261,8 +262,8 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               {/* 左側：一元化のビジュアル表現 */}
-              <div className="lg:col-span-6 flex justify-center py-6 sm:py-0 overflow-hidden w-full">
-                <div className="relative w-[290px] h-[290px] sm:w-96 sm:h-96 flex items-center justify-center scale-[0.9] sm:scale-100 transition-transform duration-300">
+              <div className="lg:col-span-6 flex justify-center py-10 sm:py-6 overflow-visible w-full">
+                <div className="relative w-[290px] h-[290px] sm:w-96 sm:h-96 flex items-center justify-center scale-[0.9] sm:scale-100 transition-transform duration-300 mt-4">
                   {/* 中央のコア */}
                   <div className="absolute w-20 h-20 sm:w-32 sm:h-32 bg-white rounded-full shadow-lg border border-blue-100 flex flex-col items-center justify-center z-10 p-2">
                     <img src={LOGO_URL} alt="KNOWLEDGE FORCE" className="w-full h-auto object-contain" />
@@ -412,12 +413,12 @@ export default function Home() {
                 <div className="overflow-x-auto scrollbar-none">
                   <table className="w-full text-sm text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-slate-100 text-slate-400 font-medium">
-                        <th className="py-3 px-2">AIモデル</th>
-                        <th className="py-3 px-2">得意なタスク</th>
-                        <th className="py-3 px-2 text-center">個別契約</th>
-                        <th className="py-3 px-2 text-right text-blue-600 font-bold">KNOWLEDGE FORCE</th>
-                      </tr>
+	                      <tr className="border-b border-slate-100 text-slate-400 font-medium">
+	                        <th className="py-3 px-2">AIモデル</th>
+	                        <th className="py-3 px-2">得意なタスク</th>
+	                        <th className="py-3 px-2 text-center">プラン</th>
+	                        <th className="py-3 px-2 text-right text-blue-600 font-bold">KNOWLEDGE FORCE</th>
+	                      </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-50">
                       <tr>
@@ -426,7 +427,7 @@ export default function Home() {
                           ChatGPT (GPT-4o)
                         </td>
                         <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">論理的思考、プログラミング、構造化、アイデア出し</td>
-                        <td className="py-4 px-2 text-center text-slate-400">月額$20 (約3,000円)</td>
+                        <td className="py-4 px-2 text-center text-slate-400">個別有料プラン (約3,000円)</td>
                         <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                       <tr>
@@ -435,7 +436,7 @@ export default function Home() {
                           Claude 3.5 Sonnet
                         </td>
                         <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">自然で美しい日本語の執筆、長文の要約、高度な分析</td>
-                        <td className="py-4 px-2 text-center text-slate-400">月額$20 (約3,000円)</td>
+                        <td className="py-4 px-2 text-center text-slate-400">個別有料プラン (約3,000円)</td>
                         <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                       <tr>
@@ -444,7 +445,7 @@ export default function Home() {
                           Gemini 1.5 Pro
                         </td>
                         <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">大量のドキュメント・動画データの超高速一括読み込み</td>
-                        <td className="py-4 px-2 text-center text-slate-400">月額$20 (約3,000円)</td>
+                        <td className="py-4 px-2 text-center text-slate-400">個別有料プラン (約3,000円)</td>
                         <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                     </tbody>
@@ -1038,8 +1039,8 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* パターン1 */}
             <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col justify-between hover:shadow-xl hover:bg-white transition-all duration-300">
-              <div className="space-y-4">
-                <span className="text-xs font-bold tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+              <div className="space-y-6">
+                <span className="text-xs font-bold tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block w-fit">
                   パターン 1
                 </span>
                 <h3 className="text-xl font-bold text-slate-800">
@@ -1049,6 +1050,27 @@ export default function Home() {
                   LINE拡張機能により、1対1の個別チャットからステップ配信、イベントや個別面談の予約受付までを完全に自動化。
                   さらに、面談の結果や売上データは自動的にサイトのダッシュボードに反映されるため、成約率の計算や手動での売上集計などの面倒な作業は一切不要になります。
                 </p>
+                
+                {/* 図解・フローチャート */}
+                <div className="bg-white p-4 rounded-2xl border border-slate-100 space-y-3 shadow-sm">
+                  <div className="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Automated Flow</div>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">1</div>
+                      <span className="text-xs text-slate-700 font-medium">LINEステップ配信</span>
+                    </div>
+                    <div className="h-3 w-0.5 bg-blue-100 ml-3" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">2</div>
+                      <span className="text-xs text-slate-700 font-medium">個別面談の自動予約</span>
+                    </div>
+                    <div className="h-3 w-0.5 bg-blue-100 ml-3" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">3</div>
+                      <span className="text-xs text-slate-700 font-medium">ダッシュボード成約率自動計算</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-400">
                 <span className="font-bold text-blue-600">解決：</span> 事務作業の時間をゼロへ
@@ -1057,8 +1079,8 @@ export default function Home() {
 
             {/* パターン2 */}
             <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col justify-between hover:shadow-xl hover:bg-white transition-all duration-300">
-              <div className="space-y-4">
-                <span className="text-xs font-bold tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+              <div className="space-y-6">
+                <span className="text-xs font-bold tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block w-fit">
                   パターン 2
                 </span>
                 <h3 className="text-xl font-bold text-slate-800">
@@ -1069,6 +1091,27 @@ export default function Home() {
                   どのLPからの流入が成約（購入）に繋がり、どのタイミングでLINEブロックに繋がっているのかをシステムが自動分析します。
                   さらに、その詳細レポートをAIが自動作成し、週1回や月末など利用者が指定したタイミングで自動提出してくれます。
                 </p>
+                
+                {/* 図解・フローチャート */}
+                <div className="bg-white p-4 rounded-2xl border border-slate-100 space-y-3 shadow-sm">
+                  <div className="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Marketing Flow</div>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">1</div>
+                      <span className="text-xs text-slate-700 font-medium">タイマー付きLP作成</span>
+                    </div>
+                    <div className="h-3 w-0.5 bg-blue-100 ml-3" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">2</div>
+                      <span className="text-xs text-slate-700 font-medium">流入＆行動の自動分析</span>
+                    </div>
+                    <div className="h-3 w-0.5 bg-blue-100 ml-3" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">3</div>
+                      <span className="text-xs text-slate-700 font-medium">AIレポート自動作成＆提出</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-400">
                 <span className="font-bold text-blue-600">解決：</span> マーケティング分析の自動化
@@ -1077,8 +1120,8 @@ export default function Home() {
 
             {/* パターン3 */}
             <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col justify-between hover:shadow-xl hover:bg-white transition-all duration-300">
-              <div className="space-y-4">
-                <span className="text-xs font-bold tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+              <div className="space-y-6">
+                <span className="text-xs font-bold tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block w-fit">
                   パターン 3
                 </span>
                 <h3 className="text-xl font-bold text-slate-800">
@@ -1089,6 +1132,27 @@ export default function Home() {
                   会員向けコンテンツのすぐ隣にAIチャットボット機能が常駐しているため、受講生は悩みを抱えてもその場ですぐに疑問を解消できます。
                   これにより、受講生の顧客満足度が極限まで高まると同時に、サポート対応（CS）コストを通常の50%以上削減できます。
                 </p>
+                
+                {/* 図解・フローチャート */}
+                <div className="bg-white p-4 rounded-2xl border border-slate-100 space-y-3 shadow-sm">
+                  <div className="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Education Flow</div>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">1</div>
+                      <span className="text-xs text-slate-700 font-medium">AIスクール・コンテンツ構築</span>
+                    </div>
+                    <div className="h-3 w-0.5 bg-blue-100 ml-3" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">2</div>
+                      <span className="text-xs text-slate-700 font-medium">会員サイト＋常駐型AIチャット</span>
+                    </div>
+                    <div className="h-3 w-0.5 bg-blue-100 ml-3" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-xs font-bold text-blue-600">3</div>
+                      <span className="text-xs text-slate-700 font-medium">CS対応コスト50%以上削減</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-400">
                 <span className="font-bold text-blue-600">解決：</span> サポートコスト50%以上削減
@@ -1287,7 +1351,7 @@ export default function Home() {
                 <Button 
                   onClick={handleCtaClick}
                   variant="outline"
-                  className="w-full rounded-full border-blue-200 text-blue-600 hover:bg-blue-50 font-bold py-5 text-xs"
+                  className="w-full rounded-full border-blue-200 text-blue-600 hover:bg-blue-50 font-bold py-5 text-xs whitespace-normal h-auto min-h-12 px-4 leading-snug"
                 >
                   KNOWLEDGE FORCEを30日間無料で始める
                 </Button>
@@ -1343,7 +1407,7 @@ export default function Home() {
               <div className="mt-8">
                 <Button 
                   onClick={handleCtaClick}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-5 text-xs rounded-full shadow-lg shadow-blue-100"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-5 text-xs rounded-full shadow-lg shadow-blue-100 whitespace-normal h-auto min-h-12 px-4 leading-snug"
                 >
                   KNOWLEDGE FORCEを30日間無料で始める
                 </Button>
@@ -1396,7 +1460,7 @@ export default function Home() {
                 <Button 
                   onClick={handleCtaClick}
                   variant="outline"
-                  className="w-full rounded-full border-blue-200 text-blue-600 hover:bg-blue-50 font-bold py-5 text-xs"
+                  className="w-full rounded-full border-blue-200 text-blue-600 hover:bg-blue-50 font-bold py-5 text-xs whitespace-normal h-auto min-h-12 px-4 leading-snug"
                 >
                   KNOWLEDGE FORCEを30日間無料で始める
                 </Button>
@@ -1699,8 +1763,7 @@ export default function Home() {
 	      <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
 	        <div className="container max-w-4xl mx-auto px-4 text-center space-y-6">
 	          <div className="flex justify-center items-center gap-3">
-		            <img src="/manus-storage/footer-ring-logo_8f3d5329.png" alt="KNOWLEDGE FORCE Logo" className="h-10 w-auto object-contain" />
-	            <span className="text-lg font-black text-white tracking-wider">KNOWLEDGE FORCE</span>
+		            <span className="text-lg font-black text-white tracking-wider">KNOWLEDGE FORCE</span>
 	          </div>
 	          <p className="text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
 	            教育・スクールビジネスの「商品設計、集客、教育、販売、顧客管理」を、AIの力で一気通貫に最適化する次世代のオールインワンAI SaaS
