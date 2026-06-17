@@ -202,16 +202,20 @@ export default function Home() {
               {/* クイック実績スタッツ (スマホでも美しく並ぶ仕様、要望通り修正) */}
               <div className="pt-6 sm:pt-8 border-t border-slate-100 grid grid-cols-2 gap-4 max-w-lg mx-auto lg:mx-0">
                 <div className="text-center lg:text-left">
-                  <div className="text-lg sm:text-xl md:text-2xl font-black text-blue-600 leading-tight">
-                    スクール事業特化<br />AI SaaS
+                  <div className="text-base sm:text-xl md:text-2xl font-black text-blue-600 leading-snug">
+                    スクール事業特化<br />
+                    AI SaaS
                   </div>
                   <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">業界に完全にアジャストされた設計</div>
                 </div>
                 <div className="text-center lg:text-left border-l border-slate-100 pl-4">
-                  <div className="text-lg sm:text-xl md:text-2xl font-black text-blue-600 leading-tight">
-                    ツールの一元化により<br />データも一元管理
+                  <div className="text-base sm:text-xl md:text-2xl font-black text-blue-600 leading-snug">
+                    ツールの一元化により<br />
+                    データも一元管理
                   </div>
-                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">散らばったデータを1つに集約</div>
+                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">
+                    散らばったデータを1つに集約
+                  </div>
                 </div>
               </div>
             </div>
@@ -262,8 +266,8 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               {/* 左側：一元化のビジュアル表現 */}
-              <div className="lg:col-span-6 flex justify-center py-10 sm:py-6 overflow-visible w-full">
-                <div className="relative w-[290px] h-[290px] sm:w-96 sm:h-96 flex items-center justify-center scale-[0.9] sm:scale-100 transition-transform duration-300 mt-4">
+              <div className="lg:col-span-6 flex justify-center py-12 sm:py-8 overflow-visible w-full">
+                <div className="relative w-[290px] h-[290px] sm:w-96 sm:h-96 flex items-center justify-center scale-[0.9] sm:scale-100 transition-transform duration-300 mt-6 mb-4">
                   {/* 中央のコア */}
                   <div className="absolute w-20 h-20 sm:w-32 sm:h-32 bg-white rounded-full shadow-lg border border-blue-100 flex flex-col items-center justify-center z-10 p-2">
                     <img src={LOGO_URL} alt="KNOWLEDGE FORCE" className="w-full h-auto object-contain" />
@@ -275,31 +279,31 @@ export default function Home() {
 
                   {/* 5大要素の配置 */}
                   {/* 1. 商品設計 (上) */}
-                  <div className="absolute -top-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                  <div className="absolute -top-6 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
                     <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">1</span>
                     <span className="text-[10px] sm:text-xs font-bold text-slate-700">商品設計 (AI)</span>
                   </div>
 
                   {/* 2. 集客 (右上) */}
-                  <div className="absolute top-1/4 -right-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                  <div className="absolute top-1/4 -right-4 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
                     <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">2</span>
                     <span className="text-[10px] sm:text-xs font-bold text-slate-700">集客 (LP/LINE)</span>
                   </div>
 
                   {/* 3. 教育 (右下) */}
-                  <div className="absolute bottom-1/4 -right-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                  <div className="absolute bottom-1/4 -right-4 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
                     <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">3</span>
                     <span className="text-[10px] sm:text-xs font-bold text-slate-700">教育 (講座作成)</span>
                   </div>
 
                   {/* 4. 販売 (左下) */}
-                  <div className="absolute bottom-1/4 -left-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                  <div className="absolute bottom-1/4 -left-4 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
                     <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">4</span>
                     <span className="text-[10px] sm:text-xs font-bold text-slate-700">販売 (LINE配信)</span>
                   </div>
 
                   {/* 5. 顧客管理 (左上) */}
-                  <div className="absolute top-1/4 -left-3 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
+                  <div className="absolute top-1/4 -left-4 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md border border-slate-100 flex items-center gap-1.5 sm:gap-2 z-10 hover:scale-105 transition-transform">
                     <span className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold">5</span>
                     <span className="text-[10px] sm:text-xs font-bold text-slate-700">顧客管理 (一元)</span>
                   </div>
@@ -427,7 +431,10 @@ export default function Home() {
                           ChatGPT (GPT-4o)
                         </td>
                         <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">論理的思考、プログラミング、構造化、アイデア出し</td>
-                        <td className="py-4 px-2 text-center text-slate-400">個別有料プラン (約3,000円)</td>
+                        <td className="py-4 px-2 text-center text-slate-400 whitespace-pre-line">
+                          個別有料プラン<br />
+                          (約3,000円)
+                        </td>
                         <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                       <tr>
@@ -436,7 +443,10 @@ export default function Home() {
                           Claude 3.5 Sonnet
                         </td>
                         <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">自然で美しい日本語の執筆、長文の要約、高度な分析</td>
-                        <td className="py-4 px-2 text-center text-slate-400">個別有料プラン (約3,000円)</td>
+                        <td className="py-4 px-2 text-center text-slate-400 whitespace-pre-line">
+                          個別有料プラン<br />
+                          (約3,000円)
+                        </td>
                         <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                       <tr>
@@ -445,7 +455,10 @@ export default function Home() {
                           Gemini 1.5 Pro
                         </td>
                         <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">大量のドキュメント・動画データの超高速一括読み込み</td>
-                        <td className="py-4 px-2 text-center text-slate-400">個別有料プラン (約3,000円)</td>
+                        <td className="py-4 px-2 text-center text-slate-400 whitespace-pre-line">
+                          個別有料プラン<br />
+                          (約3,000円)
+                        </td>
                         <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載</td>
                       </tr>
                     </tbody>
@@ -464,8 +477,9 @@ export default function Home() {
               <span className="text-xs font-bold tracking-wider uppercase bg-white/10 px-3 py-1 rounded-full text-blue-200">
                 SPECIALIZED VS GENERAL
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold mt-3">
-                なぜ、通常のChatGPTではなく「KNOWLEDGE FORCE」なのか？
+              <h3 className="text-xl sm:text-3xl font-bold mt-3 leading-snug whitespace-pre-line">
+                なぜ、通常のChatGPTではなく<br className="sm:hidden" />
+                「KNOWLEDGE FORCE」なのか？
               </h3>
               <p className="text-blue-100 text-sm sm:text-base mt-3">
                 ChatGPTなどの汎用AIは、指示（プロンプト）の出し方次第で精度が大きく変わります。
