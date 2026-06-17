@@ -26,6 +26,7 @@ import {
   Cpu,
   Minus,
   CheckCircle2,
+  CheckSquare,
   AlertCircle,
   Database,
   Menu
@@ -42,9 +43,12 @@ import {
   SheetClose
 } from "@/components/ui/sheet";
 
-// 透過処理された新しいアイコンとロゴのURL
-const LOGO_URL = "/manus-storage/knowledgeforce-header-logo_80d84b68.png";
+// 透過処理された新しいアイコンとロゴのURL (青文字ロゴに変更)
+const LOGO_URL = "/manus-storage/knowledgeforce-header-logo-blue_463e0e4f.png";
 const ICON_URL = "/manus-storage/knowledgeforce-icon-trimmed_5be8f64b.png";
+// ダッシュボードスクリーンショット画像URL
+const DASHBOARD_MAIN_URL = "/manus-storage/dashboard-main_8b682229.png";
+const DASHBOARD_STATS_URL = "/manus-storage/dashboard-stats_a7f2091e.png";
 
 export default function Home() {
   // 料金トグル (年払い/月払い)
@@ -197,24 +201,20 @@ export default function Home() {
                   size="lg"
                   className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base md:text-lg rounded-full px-6 py-5 sm:px-8 sm:py-6 w-full sm:w-auto shadow-lg shadow-blue-200 hover:shadow-xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group whitespace-normal sm:whitespace-nowrap h-auto min-h-[50px]"
                 >
-                  ナレッジフォースを30日間無料で試してみる
+                  KNOWLEDGE FORCEを30日間無料で始める
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </Button>
               </div>
 
-              {/* クイック実績スタッツ (スマホでも美しく横3列に並ぶ仕様) */}
-              <div className="pt-6 sm:pt-8 border-t border-slate-100 grid grid-cols-3 gap-2 sm:gap-4 max-w-lg mx-auto lg:mx-0">
+              {/* クイック実績スタッツ (スマホでも美しく並ぶ仕様、要望通り修正) */}
+              <div className="pt-6 sm:pt-8 border-t border-slate-100 grid grid-cols-2 gap-4 max-w-lg mx-auto lg:mx-0">
                 <div className="text-center lg:text-left">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-blue-600">9つ</div>
-                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">のツールを統合</div>
+                  <div className="text-lg sm:text-xl md:text-2xl font-black text-blue-600 leading-tight">スクール事業特化のAI SaaS</div>
+                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">業界に完全にアジャストされた設計</div>
                 </div>
-                <div className="text-center lg:text-left border-x border-slate-100 px-1 sm:px-2">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-blue-600">1/2</div>
-                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">の労力で構築</div>
-                </div>
-                <div className="text-center lg:text-left">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-blue-600">80%</div>
-                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">の工数を自動削減</div>
+                <div className="text-center lg:text-left border-l border-slate-100 pl-4">
+                  <div className="text-lg sm:text-xl md:text-2xl font-black text-blue-600 leading-tight">ツールの一元化によりデータも一元管理</div>
+                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">散らばったデータを1つに集約</div>
                 </div>
               </div>
             </div>
@@ -222,9 +222,6 @@ export default function Home() {
             {/* 右側：ロゴとグラフィック (PCで右、スマホで下) */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center text-center lg:text-left w-full">
               <div className="relative p-5 sm:p-8 md:p-12 bg-white rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 max-w-[320px] sm:max-w-md w-full">
-                <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-blue-600 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full shadow-md animate-bounce">
-                  NEW RELEASE
-                </div>
                 <img 
                   src={ICON_URL} 
                   alt="KnowledgeForce Icon" 
@@ -364,6 +361,151 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 3.5. どんなAIが使える？ (ChatGPT/Claude/Gemini比較とスクール特化型メリット) */}
+      <section className="py-20 bg-slate-50 relative border-y border-slate-100">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <Badge className="bg-blue-100 text-blue-800 border-none px-3 py-1 rounded-full text-xs font-bold uppercase mb-3">
+              WHICH AI CAN BE USED?
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+              どんなAIが使える？
+              <span className="block mt-2 text-blue-600">主要3大AIをすべてKNOWLEDGE FORCEに集約</span>
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-slate-600">
+              KNOWLEDGE FORCEなら、世界最高峰のAIモデルを個別に契約することなく、すべてこの管理画面1つから自由に切り替えてご利用いただけます。
+            </p>
+          </div>
+
+          {/* 3大AI一元化のメリットカード */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+            {/* メリット解説 */}
+            <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
+              <h3 className="text-2xl font-bold text-slate-900">
+                もう、複数のAIツールを個別に有料契約する必要はありません。
+              </h3>
+              <p className="text-slate-600 leading-relaxed">
+                ChatGPT Plus、Claude Pro、Gemini Advancedを個別に契約すると、<strong>毎月約9,000円以上（各約$20）の固定費</strong>がかかります。
+              </p>
+              <p className="text-slate-600 leading-relaxed">
+                KNOWLEDGE FORCEは、これらすべてのAIエンジンをAPI経由でシステムに内蔵。あなたは月額利用料と付与されるAIクレジットだけで、状況や用途に合わせて最適なAIを使い分けることができます。
+              </p>
+              <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100/50 text-sm text-blue-800 flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                <span>
+                  <strong>圧倒的なコスト削減：</strong>
+                  個別契約をすべて解約し、KNOWLEDGE FORCEに一本化することで、月々の固定費を大幅に浮かせることができます。
+                </span>
+              </div>
+            </div>
+
+            {/* 3大AIの対応表 */}
+            <div className="lg:col-span-7">
+              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-100 border border-slate-100 h-full flex flex-col justify-between">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-blue-600" />
+                  利用可能な主要AIモデル一覧
+                </h4>
+                <div className="overflow-x-auto scrollbar-none">
+                  <table className="w-full text-sm text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-slate-100 text-slate-400 font-medium">
+                        <th className="py-3 px-2">AIモデル</th>
+                        <th className="py-3 px-2">得意なタスク</th>
+                        <th className="py-3 px-2 text-center">個別契約</th>
+                        <th className="py-3 px-2 text-right text-blue-600 font-bold">KNOWLEDGE FORCE</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-50">
+                      <tr>
+                        <td className="py-4 px-2 font-bold text-slate-800 flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
+                          ChatGPT (GPT-4o)
+                        </td>
+                        <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">論理的思考、プログラミング、構造化、アイデア出し</td>
+                        <td className="py-4 px-2 text-center text-slate-400">約$20/月</td>
+                        <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載（無料）</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-2 font-bold text-slate-800 flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 bg-orange-500 rounded-full"></span>
+                          Claude 3.5 Sonnet
+                        </td>
+                        <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">自然で美しい日本語の執筆、長文の要約、高度な分析</td>
+                        <td className="py-4 px-2 text-center text-slate-400">約$20/月</td>
+                        <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載（無料）</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-2 font-bold text-slate-800 flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 bg-indigo-500 rounded-full"></span>
+                          Gemini 1.5 Pro
+                        </td>
+                        <td className="py-4 px-2 text-slate-600 text-xs sm:text-sm">大量のドキュメント・動画データの超高速一括読み込み</td>
+                        <td className="py-4 px-2 text-center text-slate-400">約$20/月</td>
+                        <td className="py-4 px-2 text-right text-blue-600 font-bold">標準搭載（無料）</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-100 text-center text-xs text-slate-400">
+                  ※各AIモデルの最新バージョンへ自動的にアップデートされます。
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 汎用AI vs スクール特化AI の比較表 */}
+          <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-6 sm:p-10 text-white shadow-xl">
+            <div className="max-w-3xl mx-auto text-center mb-8">
+              <span className="text-xs font-bold tracking-wider uppercase bg-white/10 px-3 py-1 rounded-full text-blue-200">
+                SPECIALIZED VS GENERAL
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold mt-3">
+                なぜ、通常のChatGPTではなく「KNOWLEDGE FORCE」なのか？
+              </h3>
+              <p className="text-blue-100 text-sm sm:text-base mt-3">
+                ChatGPTなどの汎用AIは、指示（プロンプト）の出し方次第で精度が大きく変わります。
+                KNOWLEDGE FORCEは、スクール・教育事業に完全にチューニングされているため、誰でも一瞬でプロレベルの成果物を得られます。
+              </p>
+            </div>
+
+            <div className="overflow-x-auto scrollbar-none">
+              <table className="w-full text-sm text-left border-collapse min-w-[600px]">
+                <thead>
+                  <tr className="border-b border-white/10 text-blue-200 font-medium">
+                    <th className="py-3 px-4">比較項目</th>
+                    <th className="py-3 px-4">通常のChatGPT（汎用AI）</th>
+                    <th className="py-3 px-4 bg-white/10 text-white font-bold rounded-t-xl">KNOWLEDGE FORCE（スクール特化）</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  <tr>
+                    <td className="py-4 px-4 font-bold">教育ビジネスの知識</td>
+                    <td className="py-4 px-4 text-blue-100">一般的な回答のみ。スクール独自の悩みや集客ロジックは考慮されない。</td>
+                    <td className="py-4 px-4 bg-white/10 font-medium">商品設計、集客、成約、CS対応まで、教育事業に特化したプロンプトとデータを内蔵。</td>
+                  </tr>
+                  <tr>
+                    <td className="py-4 px-4 font-bold">受講生データの連携</td>
+                    <td className="py-4 px-4 text-blue-100">不可能。受講生ごとの進捗や過去の質問履歴をAIに教え直す必要がある。</td>
+                    <td className="py-4 px-4 bg-white/10 font-medium">会員サイト、LINE、進捗データが自動連携。受講生ごとの状況に合わせたパーソナライズ対応が可能。</td>
+                  </tr>
+                  <tr>
+                    <td className="py-4 px-4 font-bold">教材のインプット</td>
+                    <td className="py-4 px-4 text-blue-100">毎回手動でファイルをアップロードして指示を出す必要がある。</td>
+                    <td className="py-4 px-4 bg-white/10 font-medium">会員サイトにアップした講義動画やテキストをAIが裏側で自動的に常時学習。</td>
+                  </tr>
+                  <tr>
+                    <td className="py-4 px-4 font-bold">操作の難易度</td>
+                    <td className="py-4 px-4 text-blue-100">「プロンプトエンジニアリング」を学び、長文の命令文を作る必要がある。</td>
+                    <td className="py-4 px-4 bg-white/10 font-medium">ボタンを1クリック、または簡単な項目を入力するだけで、最適な目次やLP、配信文が完成。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. 会員サイト構築のAIサポート（労力1/2）＆CSチャットボット自動生成 */}
       <section className="py-20 bg-slate-50 relative border-y border-slate-100">
         <div className="container max-w-7xl mx-auto px-4">
@@ -375,12 +517,12 @@ export default function Home() {
                 EASY & POWERFUL
               </Badge>
               <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                動画を構築するだけで、
-                <span className="block mt-1 text-blue-600">AIが台本・スライド・CSを自動生成</span>
+                講座コンテンツの構築も、
+                <span className="block mt-1 text-blue-600">AIが目次から自動サポート</span>
               </h2>
               <p className="text-lg text-slate-600 leading-relaxed">
-                会員サイトをつくるのも、AIによる強力なサポートが入るため、<strong>これまでの1/2の労力</strong>で完了します。
-                あなたが持っているノウハウ動画をアップロード・構築さえしてくれれば、その後の展開はすべてAIが引き受けます。
+                講座作成をする際も、AIによる強力なサポートが入るため、<strong>これまでの1/2の労力</strong>で完了します。
+                AIを活用して講座コンテンツの目次を一瞬で作ることができ、ノウハウ動画をアップロードすればその後の展開はすべてAIが引き受けます。
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -388,9 +530,9 @@ export default function Home() {
                   <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
                     <FileText className="w-5 h-5" />
                   </div>
-                  <h4 className="font-bold text-slate-800">台本・スライドの1/2化</h4>
+                  <h4 className="font-bold text-slate-800">AIによる講座目次作成</h4>
                   <p className="text-xs text-slate-500">
-                    テーマを伝えるだけで、AIが講義台本やスライド構成を自動作成。あなたは喋って録画するだけです。
+                    講座のテーマを伝えるだけで、AIが最適な講座コンテンツの目次を瞬時に自動生成します。
                   </p>
                 </div>
 
@@ -398,9 +540,9 @@ export default function Home() {
                   <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
                     <Bot className="w-5 h-5" />
                   </div>
-                  <h4 className="font-bold text-slate-800">CSボットが即座に自動生成</h4>
+                  <h4 className="font-bold text-slate-800">あなた専用のCSボット自動生成</h4>
                   <p className="text-xs text-slate-500">
-                    構築された会員サイトの動画やテキストデータをAIが自動学習。あなた専用のCSチャットボットがその場で誕生します。
+                    構築された講座内容やLINEのテキストデータをAIが自動学習。24時間対応のあなた専用のCSチャットボットが即座に誕生します。
                   </p>
                 </div>
               </div>
@@ -575,14 +717,15 @@ export default function Home() {
             
             {/* タブヘッダー */}
             <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-3 mb-12 overflow-x-auto pb-3 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 select-none">
-              {[
-                { label: "AI学習会員サイト", icon: Layers },
-                { label: "ノーコードLP制作", icon: FileText },
-                { label: "LINE自動連携", icon: Smartphone },
-                { label: "Stripe決済連携", icon: CreditCard },
-                { label: "カスタムCSボット", icon: MessageSquare },
-                { label: "データ一元管理", icon: Database },
-              ].map((tab, idx) => {
+	              {[
+	                { label: "講座作成", icon: Layers },
+	                { label: "ノーコードLP制作", icon: FileText },
+	                { label: "ライン拡張機能", icon: Smartphone },
+	                { label: "タスク管理機能", icon: CheckSquare },
+	                { label: "カスタムCSボット", icon: MessageSquare },
+	                { label: "データ一元管理", icon: Database },
+	                { label: "AIエージェント", icon: Bot },
+	              ].map((tab, idx) => {
                 const Icon = tab.icon;
                 return (
                   <button
@@ -611,45 +754,36 @@ export default function Home() {
                       <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
                         <Layers className="w-6 h-6" />
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900">AI学習会員サイト</h3>
+                      <h3 className="text-2xl font-bold text-slate-900">講座作成</h3>
                     </div>
                     
                     <p className="text-slate-600 leading-relaxed">
-                      受講生の学習行動ログをAIがリアルタイムで解析。躓いているポイントや離脱の予兆を検知し、パーソナライズされた最適な復習タイミングをレコメンドします。
+                      AIを活用して、講座コンテンツの目次を一瞬で自動作成することができます。動画教材のアップロードや知見のインプットをスムーズに行い、受講生が迷わず学べる洗練されたカリキュラム構成をAIが強力にサポートします。
                     </p>
 
                     <div className="space-y-3">
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>他社との違い：</strong> 既存のTeachable等はただ動画を並べるだけ。KnowledgeForceは受講生の躓きを検知して能動的にサポートします。</span>
+                        <span className="text-sm text-slate-700"><strong>AIによる目次生成：</strong> キーワードや対象読者を入力するだけで、教育効果の高い目次構成をAIが自動設計します。</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>どんな人におすすめ：</strong> 受講生の挫折率を下げ、講座の完走率・満足度を極限まで高めたい運営者。</span>
+                        <span className="text-sm text-slate-700"><strong>他社との違い：</strong> 既存ツールは枠組みを提供するだけ。KNOWLEDGE FORCEは中身の企画段階からAIがアシストします。</span>
                       </div>
                     </div>
 
                     <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100 text-xs text-blue-800">
-                      <strong>【図解】パーソナライズサポート：</strong>
-                      受講生が「動画A」を3回巻き戻して視聴 ➔ AIが「難所」と判定 ➔ LINEで自動的に「動画Aの補足テキスト」を個別送信
+                      <strong>【図解】講座作成アシスト：</strong>
+                      「未経験向け動画編集スクール」と入力 ➔ AIが「基礎・実践・案件獲得」の体系的な目次案を5秒で自動生成
                     </div>
                   </div>
-                  <div className="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
-                    <h4 className="font-bold text-slate-800 text-sm">学習行動分析ダッシュボード（イメージ）</h4>
-                    <div className="space-y-3">
-                      <div className="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center">
-                        <span className="text-xs text-slate-600 font-medium">平均完走率</span>
-                        <span className="text-sm font-bold text-emerald-600">92% (+35%)</span>
-                      </div>
-                      <div className="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center">
-                        <span className="text-xs text-slate-600 font-medium">離脱危険ユーザー</span>
-                        <span className="text-xs font-bold bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full">3名（自動フォロー済）</span>
-                      </div>
-                      <div className="bg-white p-3 rounded-xl border border-slate-100">
-                        <div className="text-xs text-slate-500 mb-1">直近のAIレコメンド</div>
-                        <p className="text-[11px] text-slate-600 font-medium">「受講生 田中様に、セクション2の補足クイズを送信しました」</p>
-                      </div>
-                    </div>
+                  <div className="lg:col-span-5 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold text-slate-800 text-sm mb-3 text-center">実際のダッシュボード画面（受講者インサイト）</h4>
+                    <img 
+                      src={DASHBOARD_STATS_URL} 
+                      alt="Dashboard Stats" 
+                      className="w-full h-auto rounded-xl border border-slate-200/80 shadow-md object-contain max-h-[250px] mx-auto"
+                    />
                   </div>
                 </div>
               )}
@@ -705,39 +839,62 @@ export default function Home() {
                       <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
                         <Smartphone className="w-6 h-6" />
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900">LINE自動連携</h3>
+                      <h3 className="text-2xl font-bold text-slate-900">ライン拡張機能</h3>
                     </div>
                     
                     <p className="text-slate-600 leading-relaxed">
-                      単なる配信ツールではなく、会員サイトの学習ログと完全連動。LPの離脱率や配信メッセージの反応をAIが分析し、リアルタイムで改善アラートや最適な配信文を提示します。
+                      既存のLINE拡張機能に備わっている強力なコミュニケーション・配信ツールをすべて標準搭載。1対1のチャットから大規模な自動ステップ配信まで、受講生との距離を縮め、成約率と満足度を最大化します。
                     </p>
 
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-2">
-                        <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>他社との違い：</strong> Lステップ等は数字を見るのは人間。KnowledgeForceはAIが数値を監視し、改善文まで作ってあなたを呼び出します。</span>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs sm:text-sm text-slate-700 font-medium">
+                      <div className="flex items-center gap-1.5">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>一対一のメッセージ</span>
                       </div>
-                      <div className="flex items-start gap-2">
-                        <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>どんな人におすすめ：</strong> 配信設定やデータ分析が面倒で、LINE運用を自動最適化したい方。</span>
+                      <div className="flex items-center gap-1.5">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>イベント予約機能</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>個別予約スケジュール</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>ウェビナー設定機能</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>顧客への自動タグ付け</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>ステップ配信</span>
                       </div>
                     </div>
 
                     <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100 text-xs text-blue-800">
-                      <strong>【図解】リアルタイム改善：</strong>
-                      配信メッセージのクリック率が低下 ➔ AIがLINEで運営者に通知 ➔ 「クリック率改善のための新しい配信文案（3パターン）」をその場で提案
+                      <strong>一元化の強み：</strong>
+                      LINE配信ツールと会員サイトが完全に紐付いているため、「まだ第2章を見ていない受講生だけ」にピンポイントでステップ配信を送るなど、超高度なセグメント配信がノーコードで可能です。
                     </div>
                   </div>
-                  <div className="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
-                    <h4 className="font-bold text-slate-800 text-sm">運営者向けLINEアラート（イメージ）</h4>
-                    <div className="bg-white p-4 rounded-xl border border-slate-100 space-y-3 shadow-sm">
-                      <div className="flex items-center gap-2">
-                        <img src={ICON_URL} alt="KF" className="w-6 h-6 object-contain" />
-                        <span className="text-xs font-bold text-blue-600">KnowledgeForce AI</span>
+                  <div className="lg:col-span-5 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold text-slate-800 text-sm mb-3 text-center">LINEステップ配信・連携（イメージ）</h4>
+                    <div className="bg-white p-4 rounded-xl border border-slate-100 space-y-3 shadow-sm text-xs">
+                      <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+                        <span className="w-2.5 h-2.5 bg-green-500 rounded-full"></span>
+                        <span className="font-bold text-slate-800">LINEステップ配信シナリオ</span>
                       </div>
-                      <p className="text-xs text-slate-700 bg-slate-50 p-2.5 rounded-lg leading-relaxed">
-                        「【改善アラート】昨日配信したメッセージの開封率が目標値を下回りました。件名に『特典』を含めることで、開封率が推定15%改善します。新しい配信文を作成しますか？」
-                      </p>
+                      <div className="space-y-2 text-slate-600">
+                        <div className="p-2 bg-blue-50/50 rounded border border-blue-100">
+                          <div className="font-bold text-blue-700 text-[10px]">1日目（自動送信）</div>
+                          <p className="text-[11px] mt-0.5">「ご登録ありがとうございます！まずはこちらの解説動画をご覧ください。」</p>
+                        </div>
+                        <div className="p-2 bg-slate-50 rounded border border-slate-100">
+                          <div className="font-bold text-slate-500 text-[10px]">3日目（自動送信）</div>
+                          <p className="text-[11px] mt-0.5">「講座の進捗はいかがですか？第1章を完了した方へ、個別予約の案内です。」</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -748,41 +905,45 @@ export default function Home() {
                   <div className="lg:col-span-7 space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
-                        <CreditCard className="w-6 h-6" />
+                        <CheckSquare className="w-6 h-6" />
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900">Stripe決済連携</h3>
+                      <h3 className="text-2xl font-bold text-slate-900">タスク管理機能</h3>
                     </div>
                     
                     <p className="text-slate-600 leading-relaxed">
-                      Stripeを基盤とした強固な決済。サブスクリプション、分割払い、ワンタイム決済に対応。さらに受講生の学習行動と連動し、解約リスクの高いユーザーを自動予測します。
+                      スクール運営チームや外注メンバー、講師陣が「今、何を、どこまで進めているか」を直感的に把握できるタスク管理システムを搭載。タスクを振りたい相手にワンクリックで割り振りができ、全体の進捗状況も一目で把握できます。
                     </p>
 
                     <div className="space-y-3">
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>他社との違い：</strong> 通常の決済は入金管理のみ。KnowledgeForceは「ログイン頻度の低下 ➔ 解約リスク上昇」を予測し、自動でフォローを入れます。</span>
+                        <span className="text-sm text-slate-700"><strong>チーム・外注の可視化：</strong> 散らばりがちな外注パートナーや講師陣の業務状況を、別ツールを使わずに1箇所で完全に追跡。</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>どんな人におすすめ：</strong> サブスク（月額課金）モデルの継続率・LTVを最大化させたいスクール運営者。</span>
+                        <span className="text-sm text-slate-700"><strong>簡単なタスク割り振りと進捗管理：</strong> 割り振りたい担当者を選んでタスクを作成するだけで、進捗の完了・未完了がリアルタイムに同期。</span>
                       </div>
                     </div>
 
                     <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100 text-xs text-blue-800">
-                      <strong>【図解】解約防止ロジック：</strong>
-                      受講生のログインが2週間途絶える ➔ AIが「解約リスク：高」と判定 ➔ 自動的に「最近のアップデート講義」の個別案内を送信して呼び戻し
+                      <strong>【図解】タスク割り振りの流れ：</strong>
+                      新規講義のアップロードタスクを作成 ➔ 担当講師に割り振り ➔ 講師が完了すると自動的に会員サイト側のステータスも更新
                     </div>
                   </div>
-                  <div className="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
-                    <h4 className="font-bold text-slate-800 text-sm">解約予兆分析（イメージ）</h4>
-                    <div className="space-y-2">
-                      <div className="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center">
-                        <span className="text-xs text-slate-600 font-medium">田中 太郎 様</span>
-                        <span className="text-xs font-bold bg-red-50 text-red-600 px-2 py-0.5 rounded-full">解約リスク：85%</span>
+                  <div className="lg:col-span-5 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold text-slate-800 text-sm mb-3 text-center">タスク管理ボード（イメージ）</h4>
+                    <div className="space-y-2 text-xs">
+                      <div className="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
+                        <span className="font-bold text-slate-800">第3章スライドの最終チェック</span>
+                        <span className="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full font-bold">進行中 (担当: 佐藤)</span>
                       </div>
-                      <div className="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center">
-                        <span className="text-xs text-slate-600 font-medium">鈴木 一郎 様</span>
-                        <span className="text-xs font-bold bg-amber-50 text-amber-600 px-2 py-0.5 rounded-full">解約リスク：40%</span>
+                      <div className="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
+                        <span className="font-bold text-slate-800">受講生質問回答（LINE）</span>
+                        <span className="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-bold">未着手 (担当: 田中)</span>
+                      </div>
+                      <div className="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
+                        <span className="font-bold text-slate-800">今週の売上レポート作成</span>
+                        <span className="text-[10px] bg-green-50 text-green-700 px-2 py-0.5 rounded-full font-bold">完了 (担当: 鈴木)</span>
                       </div>
                     </div>
                   </div>
@@ -796,42 +957,36 @@ export default function Home() {
                       <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
                         <MessageSquare className="w-6 h-6" />
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900">カスタムCSチャットボット</h3>
+                      <h3 className="text-2xl font-bold text-slate-900">カスタムCSボット</h3>
                     </div>
                     
                     <p className="text-slate-600 leading-relaxed">
-                      会員サイトにアップロードされたあなたの動画教材やテキストデータだけを正しく学習。一般的なAIとは異なり、あなたの提供するメソッドに100%準拠した回答を24時間自動で行います。
+                      会員サイトの内容やLINEのテキストなど、KNOWLEDGE FORCEにアップされたすべてのデータをもとに、あなた専用のチャットボットが自動で作られる設計になっています。
                     </p>
 
                     <div className="space-y-3">
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>他社との違い：</strong> 一般的なChatGPTは嘘を答える（ハルシネーション）。KnowledgeForceは「あなたの教材内」からしか回答しないため、極めて正確です。</span>
+                        <span className="text-sm text-slate-700"><strong>講師の人件費を劇的に削減：</strong> これまで月20万円で質問回答の講師を雇っていたスクールでも、月額利用料とAIクレジットだけで同等以上のクオリティの回答を24時間体制で担えます。</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>どんな人におすすめ：</strong> 日々の受講生からの質問対応・カスタマーサポートに追われ、自分の時間が奪われている方。</span>
+                        <span className="text-sm text-slate-700"><strong>あなた自身の知見に準拠：</strong> 汎用AIのように勝手な嘘を答えることなく、あなたの教材データ・LINEテキストのみから100%正確に回答。</span>
                       </div>
                     </div>
 
                     <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100 text-xs text-blue-800">
-                      <strong>【図解】カスタムCSボット：</strong>
-                      受講生が「第3章の課題の提出方法は？」と質問 ➔ AIが「あなたが作成した第3章の解説PDF」から正確な手順を1秒で回答
+                      <strong>【コスト比較】人件費 vs AIクレジット：</strong>
+                      質問対応講師（月給20万円）➔ KNOWLEDGE FORCE（月額料金 ＋ AIクレジット消費）で実質人件費をほぼゼロに。
                     </div>
                   </div>
-                  <div className="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
-                    <h4 className="font-bold text-slate-800 text-sm">受講生向けCSチャット画面（イメージ）</h4>
-                    <div className="bg-white p-4 rounded-xl border border-slate-100 space-y-3 shadow-sm text-xs">
-                      <div className="text-slate-500 text-[10px] text-center">ーー あなたの教材データから回答中 ーー</div>
-                      <div className="text-right">
-                        <span className="bg-blue-50 text-blue-800 p-2 rounded-lg inline-block">動画講義の15分目の数式について教えて</span>
-                      </div>
-                      <div className="text-left">
-                        <span className="bg-slate-100 text-slate-800 p-2 rounded-lg inline-block">
-                          講義動画「第2講」の15分12秒で解説している数式は、〇〇の法則に基づいています。詳細な解説テキストは会員サイトの資料タブにもございます。
-                        </span>
-                      </div>
-                    </div>
+                  <div className="lg:col-span-5 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold text-slate-800 text-sm mb-3 text-center">AIアシスタント対話（実際の画面）</h4>
+                    <img 
+                      src={DASHBOARD_MAIN_URL} 
+                      alt="Dashboard Chatbot" 
+                      className="w-full h-auto rounded-xl border border-slate-200/80 shadow-md object-contain max-h-[250px] mx-auto"
+                    />
                   </div>
                 </div>
               )}
@@ -843,52 +998,93 @@ export default function Home() {
                       <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
                         <Database className="w-6 h-6" />
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900">データ一元管理ダッシュボード</h3>
+                      <h3 className="text-2xl font-bold text-slate-900">データ一元管理</h3>
                     </div>
                     
                     <p className="text-slate-600 leading-relaxed">
-                      会員サイトの学習進捗、LINEの配信・反応ログ、Stripe決済データ、CSチャットの質問履歴まで、あらゆる顧客データを1つのダッシュボードに自動で一元管理。バラバラだったツールを1つに統合し、データのサイロ化を完全に解消します。
+                      会員サイトの学習進捗、LINEの配信・反応ログ、決済データ、CSチャットの質問履歴まで、あらゆる受講生データを1つのダッシュボードに自動で一元管理。ツールの一元化により、バラバラだったデータを1つに集約し、データのサイロ化を完全に解消します。
                     </p>
 
                     <div className="space-y-3">
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>他社との違い：</strong> ツールごとにデータを手動でCSVエクスポート・インポートして突合する必要がありません。すべてのデータがリアルタイムで自動連携・一元化されます。</span>
+                        <span className="text-sm text-slate-700"><strong>CSV連携や手動突合が不要：</strong> 各種ツールを別々で契約している時のように、データを手動で突合する必要がありません。すべてがリアルタイムに自動連携。</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-slate-700"><strong>どんな人におすすめ：</strong> 複数の配信ツールや決済ツールを並行利用しており、受講生一人ひとりの「本当の学習状況や売上貢献度」が追いきれなくなっている運営者。</span>
+                        <span className="text-sm text-slate-700"><strong>受講生の状況を瞬時に把握：</strong> 誰が、どの講義で、何回質問し、どのようなLINE反応をしているかが1枚のプロファイルに集約されます。</span>
                       </div>
                     </div>
 
                     <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100 text-xs text-blue-800">
                       <strong>【図解】データ一元管理：</strong>
-                      受講生の学習ログ（会員サイト） ➔ 決済履歴（Stripe） ➔ 配信反応（LINE） ➔ 質問履歴（CSボット）が1つの個人プロファイルに自動集約
+                      受講生の学習ログ（会員サイト） ➔ LINE反応 ➔ 質問履歴（CSボット）が1つの個人プロファイルに自動集約。
                     </div>
                   </div>
-                  <div className="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-4">
-                    <h4 className="font-bold text-slate-800 text-sm">一元管理ダッシュボード（イメージ）</h4>
-                    <div className="bg-white p-4 rounded-xl border border-slate-100 space-y-3 shadow-sm text-xs">
-                      <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-                        <span className="font-bold text-slate-800">受講生プロファイル：佐藤 美咲 様</span>
-                        <span className="text-[10px] bg-green-50 text-green-600 px-2 py-0.5 rounded-full font-bold">Active</span>
+                  <div className="lg:col-span-5 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold text-slate-800 text-sm mb-3 text-center">実際のダッシュボード画面（一元管理）</h4>
+                    <img 
+                      src={DASHBOARD_MAIN_URL} 
+                      alt="Dashboard Main" 
+                      className="w-full h-auto rounded-xl border border-slate-200/80 shadow-md object-contain max-h-[250px] mx-auto"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {activeFeatureTab === 6 && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                  <div className="lg:col-span-7 space-y-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
+                        <Bot className="w-6 h-6" />
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-slate-500">学習進捗率:</span>
-                          <span className="font-bold text-slate-800">85% (第4章完了)</span>
+                      <h3 className="text-2xl font-bold text-slate-900">AIエージェント</h3>
+                    </div>
+                    
+                    <p className="text-slate-600 leading-relaxed">
+                      スクール事業や教育事業における豊富な知見とノウハウをベースに設計された「専用AIエージェント」を標準搭載。汎用的な回答ではなく、スクールビジネスの成果を出すためのプロレベルのアシストが受けられます。
+                    </p>
+
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-2">
+                        <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-slate-700"><strong>商品設計エージェント：</strong> ターゲット層や強みを伝えるだけで、高単価でも売れる教育カリキュラムや講座商品を自動設計。</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-slate-700"><strong>集客・セールスエージェント：</strong> LINEステップ配信の構成、個別面談の台本、ウェビナーのスライド構成など、集客と成約に必要なあらゆる施策をフルサポート。</span>
+                      </div>
+                    </div>
+
+                    <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100 text-xs text-blue-800">
+                      <strong>【図解】エージェント活用：</strong>
+                      「デザインスクールの集客LPの訴求案が欲しい」➔ 集客エージェントが、教育業界で実績のある訴求パターンを10秒で3案自動作成
+                    </div>
+                  </div>
+                  <div className="lg:col-span-5 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold text-slate-800 text-sm mb-3 text-center">AIエージェント一覧（実際の画面）</h4>
+                    <div className="bg-white p-4 rounded-xl border border-slate-100 space-y-2 shadow-sm text-xs">
+                      <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+                        <Bot className="w-4 h-4 text-blue-600" />
+                        <span className="font-bold text-slate-800">搭載済みAIエージェント</span>
+                      </div>
+                      <div className="grid grid-cols-1 gap-1.5 text-slate-600">
+                        <div className="flex justify-between items-center p-1.5 bg-slate-50 rounded">
+                          <span>📊 商品コンセプトAI</span>
+                          <span className="text-[9px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-bold">基本搭載</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-slate-500">決済状況 (Stripe):</span>
-                          <span className="font-bold text-slate-800">月額サブスク継続中</span>
+                        <div className="flex justify-between items-center p-1.5 bg-slate-50 rounded">
+                          <span>📝 講義作成AI</span>
+                          <span className="text-[9px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-bold">基本搭載</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-slate-500">LINE開封率:</span>
-                          <span className="font-bold text-slate-800">92% (非常に高い)</span>
+                        <div className="flex justify-between items-center p-1.5 bg-slate-50 rounded">
+                          <span>📄 LP台本AI</span>
+                          <span className="text-[9px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-bold">基本搭載</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-slate-500">CS質問履歴:</span>
-                          <span className="font-bold text-slate-800">計3回 (AIが即時解決)</span>
+                        <div className="flex justify-between items-center p-1.5 bg-slate-50 rounded">
+                          <span>📱 インスタグラムAI</span>
+                          <span className="text-[9px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-bold">基本搭載</span>
                         </div>
                       </div>
                     </div>
@@ -1088,7 +1284,7 @@ export default function Home() {
               事業の成長ステージに合わせた4つのプラン
             </h2>
             <p className="mt-4 text-lg text-slate-600">
-              年払い契約をお選びいただくと、すべてのプランが<strong>20%オフ（実質2ヶ月分無料）</strong>でご利用いただけます。
+              月額利用、年払いの2つから選べます。年払いをお選びいただくと、<strong>特典として「100クレジット」を特別付与</strong>いたします！
             </p>
 
             {/* 料金切り替えトグル */}
@@ -1109,7 +1305,7 @@ export default function Home() {
               >
                 年払い
                 <span className="bg-white text-blue-600 text-[9px] font-black px-1.5 py-0.5 rounded-full">
-                  20% OFF
+                  特典 +100cr
                 </span>
               </button>
             </div>
@@ -1118,19 +1314,19 @@ export default function Home() {
           {/* 4つの料金プランカード */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch">
             
-            {/* プラン1：ベーシック */}
-            <Card className="p-6 bg-white border border-slate-100 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300">
-              <div className="space-y-4">
-                <div className="text-slate-500 text-xs font-bold tracking-wider uppercase">ベーシック</div>
-                <h3 className="text-xl font-bold text-slate-800">これから始める方</h3>
-                
-                <div className="py-4">
-                  <span className="text-3xl font-black text-slate-900">
-                    ¥{isAnnual ? "7,840" : "9,800"}
-                  </span>
-                  <span className="text-xs text-slate-400"> / 月 (税込)</span>
-                  {isAnnual && <div className="text-[10px] text-emerald-600 font-bold mt-1">※年一括 ¥94,080 払い</div>}
-                </div>
+	            {/* プラン1：ベーシック */}
+	            <Card className="p-6 bg-white border border-slate-100 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+	              <div className="space-y-4">
+	                <div className="text-slate-500 text-xs font-bold tracking-wider uppercase">ベーシック</div>
+	                <h3 className="text-xl font-bold text-slate-800">これから始める方</h3>
+	                
+	                <div className="py-4">
+	                  <span className="text-3xl font-black text-slate-900">
+	                    ¥9,800
+	                  </span>
+	                  <span className="text-xs text-slate-400"> / 月 (税込)</span>
+	                  {isAnnual && <div className="text-[10px] text-blue-600 font-bold mt-1">※年払い特典：100cr付与</div>}
+	                </div>
 
                 <p className="text-xs text-slate-500 leading-relaxed">
                   個人コンテンツホルダーや、まずはスモールスタートでAI会員サイトを立ち上げたい方に最適です。
@@ -1167,23 +1363,23 @@ export default function Home() {
               </div>
             </Card>
 
-            {/* プラン2：スタンダード（人気） */}
-            <Card className="p-6 bg-white border-2 border-blue-500 rounded-3xl flex flex-col justify-between hover:shadow-2xl hover:shadow-blue-50/50 transition-all duration-300 relative">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-black tracking-widest px-4 py-1 rounded-full uppercase shadow-md">
-                POPULAR
-              </div>
-              
-              <div className="space-y-4 mt-2">
-                <div className="text-blue-600 text-xs font-bold tracking-wider uppercase">スタンダード</div>
-                <h3 className="text-xl font-bold text-slate-800">立ち上げを加速したい方</h3>
-                
-                <div className="py-4">
-                  <span className="text-3xl font-black text-slate-900">
-                    ¥{isAnnual ? "15,840" : "19,800"}
-                  </span>
-                  <span className="text-xs text-slate-400"> / 月 (税込)</span>
-                  {isAnnual && <div className="text-[10px] text-emerald-600 font-bold mt-1">※年一括 ¥190,080 払い</div>}
-                </div>
+	            {/* プラン2：スタンダード（人気） */}
+	            <Card className="p-6 bg-white border-2 border-blue-500 rounded-3xl flex flex-col justify-between hover:shadow-2xl hover:shadow-blue-50/50 transition-all duration-300 relative">
+	              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-black tracking-widest px-4 py-1 rounded-full uppercase shadow-md">
+	                POPULAR
+	              </div>
+	              
+	              <div className="space-y-4 mt-2">
+	                <div className="text-blue-600 text-xs font-bold tracking-wider uppercase">スタンダード</div>
+	                <h3 className="text-xl font-bold text-slate-800">立ち上げを加速したい方</h3>
+	                
+	                <div className="py-4">
+	                  <span className="text-3xl font-black text-slate-900">
+	                    ¥19,800
+	                  </span>
+	                  <span className="text-xs text-slate-400"> / 月 (税込)</span>
+	                  {isAnnual && <div className="text-[10px] text-blue-600 font-bold mt-1">※年払い特典：100cr付与</div>}
+	                </div>
 
                 <p className="text-xs text-slate-500 leading-relaxed">
                   本格的にオンラインスクールを運営し、LINE自動連携や解約予兆分析AIを駆使して売上を最大化させたい方。
@@ -1223,19 +1419,19 @@ export default function Home() {
               </div>
             </Card>
 
-            {/* プラン3：プレミアム */}
-            <Card className="p-6 bg-white border border-slate-100 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300">
-              <div className="space-y-4">
-                <div className="text-slate-500 text-xs font-bold tracking-wider uppercase">プレミアム</div>
-                <h3 className="text-xl font-bold text-slate-800">大規模スクール・法人</h3>
-                
-                <div className="py-4">
-                  <span className="text-3xl font-black text-slate-900">
-                    ¥{isAnnual ? "39,840" : "49,800"}
-                  </span>
-                  <span className="text-xs text-slate-400"> / 月 (税込)</span>
-                  {isAnnual && <div className="text-[10px] text-emerald-600 font-bold mt-1">※年一括 ¥478,080 払い</div>}
-                </div>
+	            {/* プラン3：プレミアム */}
+	            <Card className="p-6 bg-white border border-slate-100 rounded-3xl flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+	              <div className="space-y-4">
+	                <div className="text-slate-500 text-xs font-bold tracking-wider uppercase">プレミアム</div>
+	                <h3 className="text-xl font-bold text-slate-800">大規模スクール・法人</h3>
+	                
+	                <div className="py-4">
+	                  <span className="text-3xl font-black text-slate-900">
+	                    ¥49,800
+	                  </span>
+	                  <span className="text-xs text-slate-400"> / 月 (税込)</span>
+	                  {isAnnual && <div className="text-[10px] text-blue-600 font-bold mt-1">※年払い特典：100cr付与</div>}
+	                </div>
 
                 <p className="text-xs text-slate-500 leading-relaxed">
                   大規模な会員制コミュニティ、複数の講座を並行して運用し、データ移行サポートを必要とする事業者に。
@@ -1364,13 +1560,13 @@ export default function Home() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50 text-xs">
-                  <tr>
-                    <td className="p-4 font-bold text-slate-800">月額（税込）</td>
-                    <td className="p-4">¥9,800 <span className="text-[10px] text-slate-400 block">(年払い: ¥7,840)</span></td>
-                    <td className="p-4 font-bold text-blue-600 bg-blue-50/30">¥19,800 <span className="text-[10px] text-slate-400 block">(年払い: ¥15,840)</span></td>
-                    <td className="p-4">¥49,800 <span className="text-[10px] text-slate-400 block">(年払い: ¥39,840)</span></td>
-                    <td className="p-4 font-bold text-slate-800">要相談</td>
-                  </tr>
+	                  <tr>
+	                    <td className="p-4 font-bold text-slate-800">月額（税込）</td>
+	                    <td className="p-4">¥9,800 <span className="text-[10px] text-blue-600 block">(年払い特典: +100cr)</span></td>
+	                    <td className="p-4 font-bold text-blue-600 bg-blue-50/30">¥19,800 <span className="text-[10px] text-blue-600 block">(年払い特典: +100cr)</span></td>
+	                    <td className="p-4">¥49,800 <span className="text-[10px] text-blue-600 block">(年払い特典: +100cr)</span></td>
+	                    <td className="p-4 font-bold text-slate-800">要相談</td>
+	                  </tr>
                   <tr>
                     <td className="p-4 font-bold text-slate-800">受講生数</td>
                     <td className="p-4">30 人</td>
@@ -1420,27 +1616,27 @@ export default function Home() {
                     <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
                     <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
                   </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-slate-800">LINE自動連携</td>
-                    <td className="p-4">一部制限あり</td>
-                    <td className="p-4 bg-blue-50/30"><Check className="w-4 h-4 text-blue-600" /></td>
-                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
-                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-slate-800">LINE連携アカウント数</td>
-                    <td className="p-4">1 アカウント</td>
-                    <td className="p-4 font-bold text-blue-600 bg-blue-50/30">3 アカウント</td>
-                    <td className="p-4">20 アカウント</td>
-                    <td className="p-4 font-bold">無制限</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-slate-800">Stripe決済連携</td>
-                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
-                    <td className="p-4 bg-blue-50/30"><Check className="w-4 h-4 text-blue-600" /></td>
-                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
-                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
-                  </tr>
+	                  <tr>
+	                    <td className="p-4 font-bold text-slate-800">ライン拡張機能</td>
+	                    <td className="p-4">一部制限あり</td>
+	                    <td className="p-4 bg-blue-50/30"><Check className="w-4 h-4 text-blue-600" /></td>
+	                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
+	                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
+	                  </tr>
+	                  <tr>
+	                    <td className="p-4 font-bold text-slate-800">LINE連携アカウント数</td>
+	                    <td className="p-4">1 アカウント</td>
+	                    <td className="p-4 font-bold text-blue-600 bg-blue-50/30">3 アカウント</td>
+	                    <td className="p-4">20 アカウント</td>
+	                    <td className="p-4 font-bold">無制限</td>
+	                  </tr>
+	                  <tr>
+	                    <td className="p-4 font-bold text-slate-800">タスク管理機能</td>
+	                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
+	                    <td className="p-4 bg-blue-50/30"><Check className="w-4 h-4 text-blue-600" /></td>
+	                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
+	                    <td className="p-4"><Check className="w-4 h-4 text-blue-600" /></td>
+	                  </tr>
                   <tr>
                     <td className="p-4 font-bold text-slate-800">月間付与AIクレジット</td>
                     <td className="p-4">300 cr</td>
@@ -1559,15 +1755,15 @@ export default function Home() {
             30日間の無料お試しで、次世代の「自走型AIビジネス」を今すぐ体験してください。
           </p>
 
-          <div className="pt-4">
-            <Button 
-              onClick={handleCtaClick}
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl rounded-full px-10 py-7 shadow-xl shadow-blue-200 hover:shadow-2xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group"
-            >
-              ナレッジフォースを30日間無料で試してみる
-              <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+	          <div className="pt-4">
+	            <Button 
+	              onClick={handleCtaClick}
+	              size="lg"
+	              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl rounded-full px-10 py-7 shadow-xl shadow-blue-200 hover:shadow-2xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group"
+	            >
+	              KNOWLEDGE FORCEを30日間無料で始める
+	              <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
+	            </Button>
             
             <div className="mt-4 text-xs text-slate-400 flex items-center justify-center gap-4">
               <span>初期費用 ¥0</span>
