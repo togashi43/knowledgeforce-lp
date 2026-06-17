@@ -171,77 +171,76 @@ export default function Home() {
         <div className="container max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
-            {/* 左側：ロゴとグラフィック */}
-            <div className="lg:col-span-5 flex flex-col items-center justify-center text-center lg:text-left">
-              <div className="relative p-8 md:p-12 bg-white rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 max-w-md w-full">
-                <div className="absolute -top-4 -right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md animate-bounce">
+            {/* 左側：キャッチコピーと導入文 (PCで左、スマホで上) */}
+            <div className="lg:col-span-7 text-center lg:text-left space-y-6 sm:space-y-8">
+              <div>
+                <Badge className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-none px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-semibold mb-4 sm:mb-6 rounded-full inline-flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 animate-spin" style={{ animationDuration: '4s' }} />
+                  教育・コンテンツ販売事業の次世代オールインワン
+                </Badge>
+                
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight tracking-tight break-keep">
+                  創造、構築、提供を
+                  <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                    一気通貫で最適に。
+                  </span>
+                </h1>
+              </div>
+              
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                KnowledgeForce（ナレッジフォース）は、教材の創造から、会員サイト・LPの構築、そしてLINEや決済、AIによる個別学習サポートまですべてを1つに統合した、事業者と受講生のための次世代AIインフラです。
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button 
+                  onClick={handleCtaClick}
+                  size="lg"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base md:text-lg rounded-full px-6 py-5 sm:px-8 sm:py-6 w-full sm:w-auto shadow-lg shadow-blue-200 hover:shadow-xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group whitespace-normal sm:whitespace-nowrap h-auto min-h-[50px]"
+                >
+                  ナレッジフォースを30日間無料で試してみる
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                </Button>
+              </div>
+
+              {/* クイック実績スタッツ (スマホでも美しく横3列に並ぶ仕様) */}
+              <div className="pt-6 sm:pt-8 border-t border-slate-100 grid grid-cols-3 gap-2 sm:gap-4 max-w-lg mx-auto lg:mx-0">
+                <div className="text-center lg:text-left">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-blue-600">9つ</div>
+                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">のツールを統合</div>
+                </div>
+                <div className="text-center lg:text-left border-x border-slate-100 px-1 sm:px-2">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-blue-600">1/2</div>
+                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">の労力で構築</div>
+                </div>
+                <div className="text-center lg:text-left">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-blue-600">80%</div>
+                  <div className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug">の工数を自動削減</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 右側：ロゴとグラフィック (PCで右、スマホで下) */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center text-center lg:text-left w-full">
+              <div className="relative p-5 sm:p-8 md:p-12 bg-white rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 max-w-[320px] sm:max-w-md w-full">
+                <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-blue-600 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full shadow-md animate-bounce">
                   NEW RELEASE
                 </div>
                 <img 
                   src={ICON_URL} 
                   alt="KnowledgeForce Icon" 
-                  className="w-40 h-40 md:w-48 md:h-48 mx-auto object-contain drop-shadow-xl animate-pulse"
+                  className="w-28 h-28 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto object-contain drop-shadow-xl animate-pulse"
                   style={{ animationDuration: '3s' }}
                 />
-                <div className="mt-8 text-center">
-                  <span className="text-xs font-bold tracking-wider text-blue-600 uppercase bg-blue-50 px-3 py-1 rounded-full">
+                <div className="mt-5 sm:mt-8 text-center">
+                  <span className="text-[10px] sm:text-xs font-bold tracking-wider text-blue-600 uppercase bg-blue-50 px-2.5 py-1 rounded-full">
                     AI-Native Platform
                   </span>
-                  <h3 className="mt-3 text-2xl font-bold text-slate-800">KnowledgeForce</h3>
-                  <p className="mt-2 text-sm text-slate-500">
+                  <h3 className="mt-2 sm:mt-3 text-lg sm:text-2xl font-bold text-slate-800">KnowledgeForce</h3>
+                  <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-slate-500">
                     教育・コンテンツビジネスの未来を創るAIシステム
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* 右側：キャッチコピーと導入文 */}
-            <div className="lg:col-span-7 text-center lg:text-left">
-              <Badge className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-none px-4 py-1.5 text-sm font-semibold mb-6 rounded-full inline-flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-blue-600 animate-spin" style={{ animationDuration: '4s' }} />
-                教育・コンテンツ販売事業の次世代オールインワン
-              </Badge>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight tracking-tight">
-                創造、構築、提供を
-                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                  一気通貫で最適に。
-                </span>
-              </h1>
-              
-              <p className="mt-8 text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl">
-                KnowledgeForce（ナレッジフォース）は、教材の創造から、会員サイト・LPの構築、そしてLINEや決済、AIによる個別学習サポートまですべてを1つに統合した、事業者と受講生のための次世代AIインフラです。
-              </p>
-
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button 
-                  onClick={handleCtaClick}
-                  size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-full px-8 py-6 shadow-lg shadow-blue-200 hover:shadow-xl hover:shadow-blue-300 active:scale-95 transition-all duration-200 group"
-                >
-                  ナレッジフォースを30日間無料で試してみる
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-
-{/* 登録バッジカット */}
-
-              {/* クイック実績スタッツ */}
-              <div className="mt-12 pt-8 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 max-w-lg mx-auto lg:mx-0 text-center sm:text-left">
-                <div className="border-b sm:border-b-0 pb-4 sm:pb-0 border-slate-100">
-                  <div className="text-3xl md:text-4xl font-black text-blue-600">9つ</div>
-                  <div className="text-xs text-slate-500 mt-1">のツールを1つに統合</div>
-                </div>
-                <div className="border-b sm:border-b-0 pb-4 sm:pb-0 border-slate-100">
-                  <div className="text-3xl md:text-4xl font-black text-blue-600">1/2</div>
-                  <div className="text-xs text-slate-500 mt-1">の労力で会員サイト構築</div>
-                </div>
-                <div>
-                  <div className="text-3xl md:text-4xl font-black text-blue-600">80%</div>
-                  <div className="text-xs text-slate-500 mt-1">の運営工数を自動削減</div>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
