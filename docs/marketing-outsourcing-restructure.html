@@ -1,0 +1,738 @@
+<style>
+  :root {
+    --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic Medium",
+      "YuGothic", "Noto Sans JP", "Meiryo", system-ui, -apple-system, sans-serif;
+    --font-num: ui-monospace, "SF Mono", "Roboto Mono", Menlo, monospace;
+
+    /* neutrals — slight blue bias */
+    --bg: #0c0f17;
+    --stage: #0c0f17;
+    --surface: #141a26;
+    --surface-2: #1b2333;
+    --line: #2a3446;
+    --line-soft: #212a3a;
+    --ink: #eef2f9;
+    --muted: #9aa7bd;
+    --faint: #6b788f;
+
+    /* accent + tiers */
+    --accent: #3d7bff;
+    --t0: #16b5ad;  /* KNOWLEDGE FORCE */
+    --t1: #3d7bff;  /* 新規事業構築 */
+    --t2: #8a6cff;  /* ローンチ */
+    --t3: #22b573;  /* グロース */
+    --warn: #e8804a; /* 足切り */
+    --shadow: 0 24px 60px -24px rgba(0,0,0,.7);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #dfe4ec;
+      --stage: #dfe4ec;
+      --surface: #ffffff;
+      --surface-2: #f2f5fa;
+      --line: #d3dae6;
+      --line-soft: #e4e9f1;
+      --ink: #141a26;
+      --muted: #59677e;
+      --faint: #8593a8;
+      --shadow: 0 24px 50px -26px rgba(31,45,70,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c0f17; --stage: #0c0f17; --surface: #141a26; --surface-2: #1b2333;
+    --line: #2a3446; --line-soft: #212a3a; --ink: #eef2f9; --muted: #9aa7bd;
+    --faint: #6b788f; --shadow: 0 24px 60px -24px rgba(0,0,0,.7);
+  }
+  :root[data-theme="light"] {
+    --bg: #dfe4ec; --stage: #dfe4ec; --surface: #ffffff; --surface-2: #f2f5fa;
+    --line: #d3dae6; --line-soft: #e4e9f1; --ink: #141a26; --muted: #59677e;
+    --faint: #8593a8; --shadow: 0 24px 50px -26px rgba(31,45,70,.35);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background:
+      radial-gradient(1200px 700px at 80% -10%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%),
+      var(--stage);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100svh;
+  }
+
+  .app {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 0;
+  }
+
+  .stage {
+    display: grid;
+    place-items: center;
+    padding: 2.2vh 2vw;
+    overflow: hidden;
+  }
+
+  .deck {
+    position: relative;
+    width: min(95vw, calc((100svh - 9vh) * 16 / 9));
+    aspect-ratio: 16 / 9;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    container-type: size;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(.995);
+    transition: opacity .34s ease, transform .34s ease, visibility .34s;
+  }
+  .slide.is-active { opacity: 1; visibility: visible; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: opacity .01s; transform: none; }
+  }
+
+  .pad { position: absolute; inset: 0; padding: 7cqh 6.5cqw; display: flex; flex-direction: column; }
+
+  /* accent rail keyed to tier */
+  .slide::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: .8cqw;
+    background: var(--k, var(--accent));
+  }
+
+  /* ---------- typography ---------- */
+  .eyebrow {
+    font-family: var(--font-num);
+    font-size: 2.05cqh; letter-spacing: .34em; text-transform: uppercase;
+    color: var(--k, var(--accent)); font-weight: 600;
+    display: flex; align-items: center; gap: 1.2cqw;
+  }
+  .eyebrow .rule { height: 1px; width: 5cqw; background: currentColor; opacity: .5; }
+  h1 { font-size: 6.4cqh; line-height: 1.1; margin: 0; font-weight: 800; letter-spacing: -.01em; text-wrap: balance; }
+  h2 { font-size: 4.6cqh; line-height: 1.12; margin: 0; font-weight: 800; letter-spacing: -.01em; text-wrap: balance; }
+  .lead { font-size: 2.7cqh; line-height: 1.55; color: var(--muted); margin: 0; }
+  .num { font-variant-numeric: tabular-nums; font-family: var(--font-num); }
+
+  .slide-head { display: flex; align-items: baseline; justify-content: space-between; gap: 3cqw; margin-bottom: 3.4cqh; }
+  .slide-head h2 { flex: 1; }
+
+  /* ---------- title slide ---------- */
+  .title { justify-content: center; gap: 3.2cqh; }
+  .title h1 { font-size: 8.2cqh; }
+  .brandline { display: flex; align-items: center; gap: 1.6cqw; color: var(--muted); font-size: 2.3cqh; }
+  .dot { width: .9cqh; height: .9cqh; border-radius: 50%; background: var(--t0); }
+  .flow-hero { display: flex; align-items: center; gap: 1.4cqw; margin-top: 1cqh; flex-wrap: wrap; }
+  .flow-hero .chip { font-size: 2.2cqh; }
+  .arrow { color: var(--faint); font-size: 2.6cqh; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: .8cqw;
+    padding: .9cqh 1.6cqw; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface-2);
+    font-size: 2cqh; font-weight: 700; color: var(--ink);
+  }
+  .chip .b { width: 1.5cqh; height: 1.5cqh; border-radius: 4px; background: var(--c, var(--accent)); }
+
+  /* ---------- overview grid ---------- */
+  .grid { display: grid; gap: 1.8cqw; flex: 1; min-height: 0; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: var(--surface-2); border: 1px solid var(--line-soft);
+    border-radius: 11px; padding: 2.6cqh 1.9cqw; display: flex; flex-direction: column; gap: 1.3cqh;
+    min-height: 0;
+  }
+  .card .tier {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 5cqh; height: 5cqh; border-radius: 9px; font-family: var(--font-num);
+    font-size: 3cqh; font-weight: 800; color: #fff;
+    background: var(--c, var(--accent)); flex: none;
+  }
+  .card h3 { margin: 0; font-size: 2.85cqh; font-weight: 800; line-height: 1.2; }
+  .card .role { font-size: 1.95cqh; color: var(--faint); }
+  .card .price { font-size: 2.15cqh; color: var(--muted); line-height: 1.5; }
+  .card .price b { color: var(--ink); font-weight: 800; }
+  .card ul { margin: 0; padding-left: 3.4cqw; display: flex; flex-direction: column; gap: .6cqh; }
+  .card li { font-size: 1.95cqh; color: var(--muted); line-height: 1.35; }
+  .cardhead { display: flex; align-items: center; gap: 1.3cqw; }
+
+  .tag {
+    align-self: flex-start; font-size: 1.7cqh; font-weight: 700; letter-spacing: .04em;
+    padding: .5cqh 1.1cqw; border-radius: 6px;
+    background: color-mix(in srgb, var(--c, var(--accent)) 16%, transparent);
+    color: var(--c, var(--accent));
+  }
+
+  /* ---------- detail (plan) slide ---------- */
+  .detail { display: grid; grid-template-columns: 1fr 1fr 1.05fr; gap: 1.8cqw; flex: 1; min-height: 0; }
+  .panel {
+    background: var(--surface-2); border: 1px solid var(--line-soft);
+    border-radius: 11px; padding: 2.4cqh 1.8cqw; display: flex; flex-direction: column; gap: 1.4cqh; min-height: 0;
+  }
+  .panel .plabel {
+    font-family: var(--font-num); font-size: 1.75cqh; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--faint); font-weight: 600;
+  }
+  .panel .big { font-size: 3.4cqh; font-weight: 800; line-height: 1.2; }
+  .panel .sub { font-size: 2cqh; color: var(--muted); line-height: 1.5; }
+  .panel ul { margin: 0; padding-left: 3cqw; display: flex; flex-direction: column; gap: .8cqh; }
+  .panel li { font-size: 2.05cqh; color: var(--ink); line-height: 1.3; }
+  .kv { display: flex; flex-direction: column; gap: .35cqh; }
+  .kv .k { font-size: 1.8cqh; color: var(--faint); }
+  .kv .v { font-size: 2.3cqh; font-weight: 700; }
+  .divide { height: 1px; background: var(--line); margin: .4cqh 0; }
+
+  .tierbadge {
+    display: inline-flex; align-items: center; gap: 1.2cqw;
+  }
+  .tierbadge .n {
+    width: 6cqh; height: 6cqh; border-radius: 11px; display: grid; place-items: center;
+    font-family: var(--font-num); font-size: 3.6cqh; font-weight: 800; color: #fff; background: var(--k, var(--accent));
+  }
+
+  /* ---------- table ---------- */
+  .tablewrap { flex: 1; min-height: 0; overflow: auto; border: 1px solid var(--line-soft); border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 2cqh; }
+  th, td { text-align: left; padding: 1.5cqh 1.5cqw; border-bottom: 1px solid var(--line-soft); vertical-align: top; line-height: 1.4; }
+  thead th { position: sticky; top: 0; background: var(--surface-2); color: var(--faint); font-size: 1.7cqh; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
+  tbody tr:last-child td { border-bottom: none; }
+  td b, td strong { color: var(--ink); }
+  td .num { color: var(--ink); font-weight: 700; }
+  .rowk { font-weight: 800; }
+
+  /* ---------- steps / flow ---------- */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6cqw; flex: 1; min-height: 0; }
+  .step {
+    position: relative; background: var(--surface-2); border: 1px solid var(--line-soft);
+    border-radius: 11px; padding: 2.4cqh 1.7cqw; display: flex; flex-direction: column; gap: 1.2cqh; min-height: 0;
+  }
+  .step .sn { font-family: var(--font-num); font-size: 2cqh; color: var(--accent); font-weight: 700; letter-spacing: .1em; }
+  .step h3 { margin: 0; font-size: 2.5cqh; font-weight: 800; }
+  .step p, .step li { font-size: 1.9cqh; color: var(--muted); line-height: 1.4; margin: 0; }
+  .step ul { margin: 0; padding-left: 3.2cqw; display: flex; flex-direction: column; gap: .55cqh; }
+
+  .flowline {
+    display: flex; align-items: stretch; gap: 1.2cqw; flex: 1; min-height: 0;
+  }
+  .fnode {
+    flex: 1; background: var(--surface-2); border: 1px solid var(--line-soft); border-radius: 11px;
+    padding: 2.4cqh 1.7cqw; display: flex; flex-direction: column; gap: 1cqh; justify-content: center;
+  }
+  .fnode .who { font-family: var(--font-num); font-size: 1.7cqh; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .fnode h3 { margin: 0; font-size: 2.5cqh; font-weight: 800; }
+  .fnode p { margin: 0; font-size: 1.95cqh; color: var(--muted); line-height: 1.45; }
+  .fsep { display: grid; place-items: center; color: var(--faint); font-size: 3.4cqh; }
+
+  .note {
+    margin-top: 2.2cqh; font-size: 1.95cqh; color: var(--muted); line-height: 1.5;
+    display: flex; gap: 1cqw; align-items: flex-start;
+  }
+  .note::before { content: "※"; color: var(--warn); font-weight: 800; }
+
+  .callout {
+    border-left: 3px solid var(--warn);
+    background: color-mix(in srgb, var(--warn) 10%, transparent);
+    border-radius: 0 9px 9px 0; padding: 1.6cqh 1.8cqw; font-size: 2.05cqh; color: var(--ink); line-height: 1.5;
+  }
+  .callout b { color: var(--warn); }
+
+  /* ---------- footer / nav ---------- */
+  .bar {
+    display: flex; align-items: center; gap: 1.4vw;
+    padding: 1.4vh 3vw; background: transparent;
+  }
+  .bar .title-mini { font-size: 1.7vh; color: var(--faint); letter-spacing: .04em; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .progress { flex: 2; height: 4px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .progress > i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 4px; transition: width .34s ease; }
+  .count { font-family: var(--font-num); font-size: 1.8vh; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .navbtn {
+    width: 3.8vh; height: 3.8vh; min-width: 34px; min-height: 34px; border-radius: 9px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    font-size: 2.1vh; cursor: pointer; display: grid; place-items: center;
+    transition: border-color .15s, background .15s;
+  }
+  .navbtn:hover { border-color: var(--accent); }
+  .navbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .navbtn:disabled { opacity: .35; cursor: default; }
+
+  @media (max-width: 720px) {
+    .deck { width: 96vw; }
+    .bar { padding: 1.2vh 3vw; gap: 2.5vw; }
+    .title-mini { display: none; }
+  }
+</style>
+
+<div class="app">
+  <div class="stage">
+    <div class="deck" id="deck">
+
+      <!-- 1 · TITLE -->
+      <section class="slide is-active" style="--k:var(--t0)">
+        <div class="pad title">
+          <div class="brandline"><span class="dot"></span> KNOWLEDGE FORCE ／ MODE-1</div>
+          <div class="eyebrow"><span class="rule"></span> Restructuring Plan</div>
+          <h1>マーケティング<br>受託事業　再編プラン</h1>
+          <p class="lead">足切りラインなしで獲得してきた受託事業を、<b style="color:var(--ink)">3プラン制</b>へ再編する。</p>
+          <div class="flow-hero">
+            <span class="chip"><span class="b" style="--c:var(--t1)"></span>① 新規事業を立ち上げ</span>
+            <span class="arrow">→</span>
+            <span class="chip"><span class="b" style="--c:var(--t2)"></span>② 成果報酬で伸ばす</span>
+            <span class="arrow">→</span>
+            <span class="chip"><span class="b" style="--c:var(--t3)"></span>③ グロースへ積み上げ</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · AGENDA -->
+      <section class="slide" style="--k:var(--accent)">
+        <div class="pad">
+          <div class="slide-head"><h2>概要</h2><span class="eyebrow">Agenda</span></div>
+          <div class="grid cols-2">
+            <div class="card">
+              <ul style="padding-left:4cqw;gap:1.4cqh">
+                <li style="font-size:2.5cqh;color:var(--ink)"><b>1.</b>　受託のプラン</li>
+                <li style="font-size:2.5cqh;color:var(--ink)"><b>2.</b>　マーケター基準（誰がどの役割になれるか）</li>
+                <li style="font-size:2.5cqh;color:var(--ink)"><b>3.</b>　プラン移行のフロー</li>
+                <li style="font-size:2.5cqh;color:var(--ink)"><b>4.</b>　今後の入出金フロー</li>
+              </ul>
+            </div>
+            <div class="card" style="justify-content:center;gap:2cqh">
+              <span class="tag" style="--c:var(--warn)">再編の狙い</span>
+              <p class="lead" style="font-size:2.35cqh;color:var(--ink)">販売時だけでなく、サポート開始後もこちらから条件を提示する。</p>
+              <p class="lead" style="font-size:2.15cqh">ジャンル・商品単価・SNS投稿数・レス速度・タスク進捗 ── 満たさない顧客は<b style="color:var(--warn)">足切り対象</b>。</p>
+              <p class="lead" style="font-size:2.15cqh">今後は稼働を<b style="color:var(--ink)">レベルの高い顧客（＝LTVが高い顧客）</b>にリソース集中させる。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · 3-PLAN OVERVIEW -->
+      <section class="slide" style="--k:var(--accent)">
+        <div class="pad">
+          <div class="slide-head"><h2>事業再編の全体像</h2><span class="eyebrow">3 Plans</span></div>
+          <div class="grid cols-4">
+            <div class="card" style="--c:var(--t0)">
+              <div class="cardhead"><span class="tier">⓪</span><h3>KNOWLEDGE&nbsp;FORCE<br>特別プラン</h3></div>
+              <div class="role">作業者／プロモーター</div>
+              <div class="price"><b>月額利用額の10%</b><br>個別CS・月1改善提案</div>
+              <span class="tag">利用者数UP・実績UP</span>
+            </div>
+            <div class="card" style="--c:var(--t1)">
+              <div class="cardhead"><span class="tier">①</span><h3>新規事業構築</h3></div>
+              <div class="role">プロデューサー＋プロモーター</div>
+              <div class="price"><b>一括200万</b> ＋ ナレフォ月額<br>分割 月10万／プロ 月5万</div>
+              <span class="tag">プロダクト設計→初回ローンチ</span>
+            </div>
+            <div class="card" style="--c:var(--t2)">
+              <div class="cardhead"><span class="tier">②</span><h3>ローンチ</h3></div>
+              <div class="role">プロデューサー＋プロモーター</div>
+              <div class="price"><b>成果報酬50%</b><br>or 20%＋50万／プロ 利益15%</div>
+              <span class="tag">立ち上げ済みを伸ばす</span>
+            </div>
+            <div class="card" style="--c:var(--t3)">
+              <div class="cardhead"><span class="tier">③</span><h3>グロース</h3></div>
+              <div class="role">本社メンバー＋クルー</div>
+              <div class="price"><b>月50万〜</b> ＋ 着座2万/件<br>クルー 月額の10%＋着座1000円</div>
+              <span class="tag">LTV安定顧客を積み上げる</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · PLAN 0 -->
+      <section class="slide" style="--k:var(--t0)">
+        <div class="pad">
+          <div class="slide-head">
+            <div class="tierbadge"><span class="n">⓪</span><h2>KNOWLEDGE FORCE 特別プラン</h2></div>
+            <span class="eyebrow" style="--k:var(--t0)">Plan 0</span>
+          </div>
+          <div class="detail">
+            <div class="panel">
+              <div class="plabel">構成・料金</div>
+              <div class="kv"><span class="k">利用</span><span class="v">KNOWLEDGE FORCE 利用額</span></div>
+              <div class="divide"></div>
+              <div class="kv"><span class="k">担当者への月額費用</span><span class="v">月 5〜10万円</span></div>
+              <div class="divide"></div>
+              <div class="kv"><span class="k">導入支援費用（単発）</span><span class="v">30〜50万円</span></div>
+            </div>
+            <div class="panel">
+              <div class="plabel">担当・報酬</div>
+              <div class="kv"><span class="k">担当者</span><span class="v">作業者／プロモーター</span></div>
+              <div class="divide"></div>
+              <div class="kv"><span class="k">報酬</span><span class="v" style="color:var(--t0)">月額利用額の 10%</span></div>
+              <div class="divide"></div>
+              <p class="sub">ナレッジフォースの個別CSを担当。</p>
+            </div>
+            <div class="panel">
+              <div class="plabel">やること</div>
+              <ul>
+                <li>月1回、使用方法の改善提案</li>
+                <li>KNOWLEDGE FORCE の利用者数UP</li>
+                <li>実績UP</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · PLAN 1 -->
+      <section class="slide" style="--k:var(--t1)">
+        <div class="pad">
+          <div class="slide-head">
+            <div class="tierbadge"><span class="n">①</span><h2>新規事業構築</h2></div>
+            <span class="eyebrow" style="--k:var(--t1)">Plan 1</span>
+          </div>
+          <div class="detail">
+            <div class="panel">
+              <div class="plabel">構成・料金</div>
+              <div class="big">QMPSS 100万<br>＋ ナレフォ月額</div>
+              <p class="sub">担当者 月10万 × 12ヶ月</p>
+              <div class="divide"></div>
+              <div class="kv"><span class="k">一括</span><span class="v">合計200万＋ナレフォ月額<span class="sub" style="display:block">（一括は値引きあり）</span></span></div>
+              <div class="kv"><span class="k">分割</span><span class="v">月10万円</span></div>
+            </div>
+            <div class="panel">
+              <div class="plabel">担当・報酬</div>
+              <div class="kv"><span class="k">顧客対応</span><span class="v">プロデューサー</span></div>
+              <div class="kv"><span class="k">作業</span><span class="v">プロモーター</span></div>
+              <div class="kv"><span class="k">＋</span><span class="v">KNOWLEDGE FORCE 利用</span></div>
+              <div class="divide"></div>
+              <div class="kv"><span class="k">プロデューサー報酬</span><span class="v" style="color:var(--t1)">月額 5万円</span></div>
+            </div>
+            <div class="panel">
+              <div class="plabel">やること</div>
+              <ul>
+                <li>プロダクト設計</li>
+                <li>初回ローンチ</li>
+                <li>リスト内企画 ×2</li>
+                <li>エバーグリーン設置</li>
+                <li>コラボ権利／仕組み作り</li>
+              </ul>
+              <div class="callout" style="font-size:1.85cqh">成果：担当顧客を<b style="color:var(--ink)">年商1000万</b>に成長／②③への顧客創出</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · PLAN 2 -->
+      <section class="slide" style="--k:var(--t2)">
+        <div class="pad">
+          <div class="slide-head">
+            <div class="tierbadge"><span class="n">②</span><h2>ローンチ</h2></div>
+            <span class="eyebrow" style="--k:var(--t2)">Plan 2</span>
+          </div>
+          <div class="detail">
+            <div class="panel">
+              <div class="plabel">構成・料金</div>
+              <div class="big">成果報酬 50%</div>
+              <p class="sub">または 20% ＋ 50万 のパターン選択</p>
+              <div class="divide"></div>
+              <p class="sub">固定をいただく場合のみ<b style="color:var(--ink)">経費先出し可</b>。</p>
+              <div class="divide"></div>
+              <p class="sub">立ち上げ済みを伸ばす。現プロデューサーが統括。</p>
+            </div>
+            <div class="panel">
+              <div class="plabel">担当・報酬</div>
+              <div class="kv"><span class="k">顧客対応</span><span class="v">プロデューサー</span></div>
+              <div class="kv"><span class="k">作業</span><span class="v">プロモーター</span></div>
+              <div class="kv"><span class="k">＋</span><span class="v">KNOWLEDGE FORCE 利用</span></div>
+              <div class="divide"></div>
+              <div class="kv"><span class="k">プロデューサー報酬</span><span class="v" style="color:var(--t2)">利益の 15%</span></div>
+              <p class="sub">ラダー式を検討</p>
+            </div>
+            <div class="panel">
+              <div class="plabel">やること</div>
+              <ul>
+                <li>プロダクト設計</li>
+                <li>ローンチ</li>
+                <li>リスト内企画</li>
+                <li>エバーグリーン設置</li>
+                <li>コラボ権利／仕組み作り</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · PLAN 3 -->
+      <section class="slide" style="--k:var(--t3)">
+        <div class="pad">
+          <div class="slide-head">
+            <div class="tierbadge"><span class="n">③</span><h2>グロース ── LTVを積み上げる</h2></div>
+            <span class="eyebrow" style="--k:var(--t3)">Plan 3</span>
+          </div>
+          <div class="grid cols-2" style="grid-template-columns:1.1fr .9fr">
+            <div class="tablewrap">
+              <table>
+                <thead><tr><th>タイプ</th><th>料金</th></tr></thead>
+                <tbody>
+                  <tr><td class="rowk">3-1 LTVマーケ</td><td><span class="num">月50万</span> ＋ 着座<span class="num">2万</span>/件</td></tr>
+                  <tr><td class="rowk">3-2 マーケ＋営業</td><td>成果 <span class="num">50%</span></td></tr>
+                  <tr><td class="rowk">3-3 広告</td><td>広告費 <span class="num">20%</span> ＋ 着座<span class="num">2万</span>/件</td></tr>
+                  <tr><td class="rowk">3-4 コンサル</td><td><span class="num">月50万</span> 〜</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel">
+              <div class="plabel">担当・報酬</div>
+              <div class="kv"><span class="k">顧客対応</span><span class="v">MODE-1 出社メンバー</span></div>
+              <div class="kv"><span class="k">作業</span><span class="v">プロモーター／クルー</span></div>
+              <div class="divide"></div>
+              <div class="kv"><span class="k">クルー報酬</span><span class="v" style="color:var(--t3)">月額報酬の10% ＋ 着座数×1000円</span></div>
+              <p class="sub">例：月40万の場合 4万円 ＋ 着座数×1000円</p>
+              <div class="divide"></div>
+              <p class="sub">内部メンバー＋外部フリーランスで運用。LTVが安定する顧客数を積み上げる。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 · 補足 + マーケター報酬 -->
+      <section class="slide" style="--k:var(--accent)">
+        <div class="pad">
+          <div class="slide-head"><h2>補足 ＆ マーケター報酬</h2><span class="eyebrow">Notes &amp; Fees</span></div>
+          <div class="grid cols-2">
+            <div class="card">
+              <span class="tag">補足</span>
+              <ul style="padding-left:3.6cqw;gap:1cqh">
+                <li>立ち上げ期はクライアントの理解のため QMPSS を購入してもらう</li>
+                <li>①が売れない場合は「0」または「コンパスのみ」をダウンセル</li>
+                <li>プロ／プロモーター用に KNOWLEDGE FORCE を配布（原価＋αで利用可）→ 品質を一定に強化</li>
+                <li>プロモーターはクライアントワークなし。プロデューサーが顧客対応</li>
+              </ul>
+            </div>
+            <div class="card">
+              <span class="tag" style="--c:var(--t2)">マーケター報酬</span>
+              <div class="kv"><span class="k">パッケージ⓪</span><span class="v">月額報酬の 10%</span></div>
+              <div class="kv"><span class="k">パッケージ①</span><span class="v">月額 5万円 / 案件</span></div>
+              <div class="kv"><span class="k">パッケージ③</span><span class="v">月額報酬の10% ＋ 着座成果 1000円</span></div>
+              <div class="divide"></div>
+              <div class="kv"><span class="k">パッケージ② ── 案件数でラダー</span>
+                <span class="v" style="font-size:2cqh;line-height:1.7">
+                  〜5件：<span class="num">10%</span>　／　5〜7件：<span class="num">12%</span><br>
+                  7〜10件：<span class="num">15%</span>　／　10〜15件：<span class="num">17%</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9 · マーケター基準 -->
+      <section class="slide" style="--k:var(--accent)">
+        <div class="pad">
+          <div class="slide-head"><h2>マーケター基準 ── 誰がどの役割になれるか</h2><span class="eyebrow">Criteria</span></div>
+          <div class="grid cols-2" style="grid-template-columns:.85fr 1.15fr">
+            <div class="card">
+              <span class="tag">共通判定軸</span>
+              <ul style="padding-left:3.6cqw;gap:.9cqh">
+                <li>コミット度</li>
+                <li>クライアントワーク経験</li>
+                <li>セールス・商談力</li>
+                <li>マーケ設計力（コンセプト・ファネル）</li>
+                <li>広告運用スキル</li>
+                <li>同時案件マネジメント数</li>
+                <li>実績（担当顧客をどの年商まで伸ばしたか）</li>
+              </ul>
+            </div>
+            <div class="tablewrap">
+              <table>
+                <thead><tr><th>役割</th><th>要件</th><th>成果</th></tr></thead>
+                <tbody>
+                  <tr><td class="rowk">作業者</td><td>マニュアルに沿った実作業。指示で動ける（単独戦略判断は不要）</td><td>制作物のクオリティ</td></tr>
+                  <tr><td class="rowk">① 担当者</td><td>設計→ローンチ→エバーグリーンまで自走。月1Zoom＋チャット支援</td><td>年商1000万へ成長／②③創出数</td></tr>
+                  <tr><td class="rowk">② プロデューサー</td><td>商品設計・戦略提案・進捗管理。作業者を配置し5〜10案件を管理</td><td>顧客LTV（流通売上）</td></tr>
+                  <tr><td class="rowk">③ グロース担当</td><td>LTVマーケ／広告運用。顧客対応は本社が担う</td><td>顧客LTV設計</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="note">合格ラインは後日検討／積極的に入れ替わりを起こす／定量的な昇格基準を作る／打ち切り案件が多い担当者には新規案件を渡さない</div>
+        </div>
+      </section>
+
+      <!-- 10 · 移行フロー -->
+      <section class="slide" style="--k:var(--accent)">
+        <div class="pad">
+          <div class="slide-head"><h2>移行フロー</h2><span class="eyebrow">Migration</span></div>
+          <div class="steps">
+            <div class="step">
+              <span class="sn">STEP 1</span>
+              <h3>マーケターへ先に周知・役割確定</h3>
+              <ul>
+                <li>①作業者（②から受注）</li>
+                <li>②プロデューサー（CWあり）</li>
+                <li>③グロース担当（CWなし）</li>
+              </ul>
+            </div>
+            <div class="step">
+              <span class="sn">STEP 2</span>
+              <h3>既存顧客をセグメント分け</h3>
+              <ul>
+                <li><b style="color:var(--t3)">そのまま</b>：年商1000万以上（見込み含む）→ 成果報酬で継続</li>
+                <li><b style="color:var(--warn)">足切り</b>：条件未達 → KNOWLEDGE FORCE 導入（導入＋支援 基本30万、裁量で導入費のみに）</li>
+              </ul>
+            </div>
+            <div class="step">
+              <span class="sn">STEP 3</span>
+              <h3>顧客へ個別周知</h3>
+              <p>セグメントに応じ1件ずつ伝える。継続相手には新条件（ジャンル・単価・SNS投稿数・レス速度・タスク進捗・成約率）を<b style="color:var(--warn)">「開始後も足切り対象」</b>として明示。</p>
+            </div>
+            <div class="step">
+              <span class="sn">STEP 4</span>
+              <h3>契約締結</h3>
+              <p>既存契約の終了処理と新契約の締結。準備中のローンチまでは支援。</p>
+              <p style="color:var(--faint)">ローンチ終了 → 精算 → 足切りは KF 提案／継続は条件説明のうえ支援継続。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 · 入金フロー -->
+      <section class="slide" style="--k:var(--t3)">
+        <div class="pad">
+          <div class="slide-head"><h2>入金フロー（顧客 → MODE-1）</h2><span class="eyebrow">Inflow</span></div>
+          <div class="grid cols-3">
+            <div class="card" style="--c:var(--t1)">
+              <span class="tag">パッケージ①</span>
+              <p class="price">契約／開始時に <b>コンパス100万 ＋ 12ヶ月分を一括</b>（分割よりお得に）</p>
+              <p class="role">制作費は月額報酬に含む</p>
+            </div>
+            <div class="card" style="--c:var(--t2)">
+              <span class="tag">パッケージ②</span>
+              <p class="price">顧客の月次売上が確定 → 請求 → 入金（<b>成果報酬</b>）</p>
+              <p class="role">制作費用はプロデューサー負担</p>
+            </div>
+            <div class="card" style="--c:var(--t3)">
+              <span class="tag">パッケージ③</span>
+              <p class="price"><b>月額固定</b>（コンサル50万／LTV50万）＋ 変動費（着座2万×件数 or 広告費20%）を月次精算</p>
+              <p class="role">制作費は月額報酬に含む</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12 · 売上把握の座組み -->
+      <section class="slide" style="--k:var(--accent)">
+        <div class="pad">
+          <div class="slide-head"><h2>売上把握の座組み</h2><span class="eyebrow">Revenue Tracking</span></div>
+          <div class="flowline">
+            <div class="fnode">
+              <span class="who">クライアント</span>
+              <h3>商談録画・振り返りをリアルタイム提出</h3>
+              <p>契約書に義務として明記。マーケ分析・セールス添削を名目に必須化。</p>
+            </div>
+            <div class="fsep">→</div>
+            <div class="fnode">
+              <span class="who">プロデューサー（確認者）</span>
+              <h3>アポ日の把握・録画収集・確認・本部報告</h3>
+              <p>アポ日の管理、商談録画の収集・確認。</p>
+            </div>
+            <div class="fsep">→</div>
+            <div class="fnode">
+              <span class="who">富樫・葉山（管理者）</span>
+              <h3>デイリーで売上管理</h3>
+              <p>入金全体の管理。今後は決済代行も想定。</p>
+            </div>
+          </div>
+          <div class="note">商談録画の提出を義務化（契約書で確認）し、振り返りをリアルタイムで記入してもらう。</div>
+        </div>
+      </section>
+
+      <!-- 13 · 出金フロー -->
+      <section class="slide" style="--k:var(--warn)">
+        <div class="pad">
+          <div class="slide-head"><h2>出金フロー（MODE-1 → 社内外）</h2><span class="eyebrow">Outflow</span></div>
+          <div class="tablewrap" style="flex:none;max-height:52cqh">
+            <table>
+              <thead><tr><th>対象</th><th>報酬</th><th>備考</th></tr></thead>
+              <tbody>
+                <tr><td class="rowk">プロデューサー</td><td>①：月額5万円／②：利益の<span class="num">15%</span>（ラダー検討）</td><td>50%案件でも 40%＋10万案件でも同率</td></tr>
+                <tr><td class="rowk">作業者</td><td>プロデューサーが15%内から配分</td><td>配分依頼はプロから（本部で基準を設ける）</td></tr>
+                <tr><td class="rowk">経費</td><td>各作業により変動</td><td>都度本部に申告 → 承認 → 実行</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="grid cols-2" style="flex:none;margin-top:2cqh">
+            <div class="callout" style="border-color:var(--t1);background:color-mix(in srgb,var(--t1) 10%,transparent)">外注費の先出しは<b style="color:var(--t1)">固定報酬を払っているクライアントのみ</b>対象（プロデューサーが50%負担）</div>
+            <div class="callout">成果のみの方は<b>月締め・翌月10日払い</b>で精算・請求。外注先へは<b>月締め・翌月末払い</b>（プロデューサーが50%負担）</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 · CLOSING -->
+      <section class="slide" style="--k:var(--t0)">
+        <div class="pad title" style="gap:2.6cqh">
+          <div class="eyebrow" style="--k:var(--t0)"><span class="rule"></span> Summary</div>
+          <h1 style="font-size:5.4cqh">立ち上げ → 成果報酬 → グロースへ<br>リソースを、伸びる顧客に集中させる。</h1>
+          <div class="flow-hero">
+            <span class="chip"><span class="b" style="--c:var(--t0)"></span>⓪ KNOWLEDGE FORCE</span>
+            <span class="chip"><span class="b" style="--c:var(--t1)"></span>① 新規事業構築</span>
+            <span class="chip"><span class="b" style="--c:var(--t2)"></span>② ローンチ</span>
+            <span class="chip"><span class="b" style="--c:var(--t3)"></span>③ グロース</span>
+          </div>
+          <p class="lead" style="font-size:2.1cqh">※ 料金の細部は再度詰める。各条件の数値は別途作成。</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <nav class="bar">
+    <button class="navbtn" id="prev" aria-label="前のスライド">‹</button>
+    <button class="navbtn" id="next" aria-label="次のスライド">›</button>
+    <span class="title-mini" id="tmini"></span>
+    <div class="progress"><i id="pbar"></i></div>
+    <span class="count"><span id="cur">1</span> / <span id="tot">14</span></span>
+  </nav>
+</div>
+
+<script>
+  (function () {
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var titles = ['タイトル','概要','3プラン全体像','⓪ KNOWLEDGE FORCE','① 新規事業構築','② ローンチ',
+      '③ グロース','補足 ＆ 報酬','マーケター基準','移行フロー','入金フロー','売上把握の座組み','出金フロー','まとめ'];
+    var i = 0, n = slides.length;
+    var cur = document.getElementById('cur'), pbar = document.getElementById('pbar'),
+        tmini = document.getElementById('tmini'), prev = document.getElementById('prev'), next = document.getElementById('next');
+    document.getElementById('tot').textContent = n;
+
+    function show(k) {
+      i = Math.max(0, Math.min(n - 1, k));
+      slides.forEach(function (s, idx) { s.classList.toggle('is-active', idx === i); });
+      cur.textContent = i + 1;
+      pbar.style.width = ((i + 1) / n * 100) + '%';
+      tmini.textContent = titles[i] || '';
+      prev.disabled = i === 0;
+      next.disabled = i === n - 1;
+    }
+    prev.addEventListener('click', function () { show(i - 1); });
+    next.addEventListener('click', function () { show(i + 1); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { show(i + 1); e.preventDefault(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { show(i - 1); e.preventDefault(); }
+      else if (e.key === 'Home') { show(0); }
+      else if (e.key === 'End') { show(n - 1); }
+    });
+    var sx = null;
+    document.querySelector('.stage').addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, {passive:true});
+    document.querySelector('.stage').addEventListener('touchend', function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 45) show(i + (dx < 0 ? 1 : -1));
+      sx = null;
+    }, {passive:true});
+    show(0);
+  })();
+</script>
